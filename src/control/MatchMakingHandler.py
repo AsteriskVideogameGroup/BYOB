@@ -2,9 +2,14 @@ class MatchMakingHandler:
     _instance = None  # singleton instance
 
     def __init__(self):
-        print "Hello world"
+        if not MatchMakingHandler._instance:
+            MatchMakingHandler._instance = self
+        else:
+            raise MatchMakingHandler._instance  # throw exception
 
+    @staticmethod
+    def getInstance():
+        return MatchMakingHandler._instance
 
-    class SingleInstance:
-        def __init__(self):
-            pass
+    def makeNewGame(self):
+        pass
