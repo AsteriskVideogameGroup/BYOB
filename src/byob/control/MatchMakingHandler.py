@@ -1,3 +1,5 @@
+from src.byob.model import Player
+
 class MatchMakingHandler:
     _instance = None  # singleton instance
 
@@ -11,5 +13,5 @@ class MatchMakingHandler:
     def getInstance():
         return MatchMakingHandler._instance
 
-    def makeNewGame(self):
+    def makeNewGame(self, player, modeid="nomode", isranked=False):
         pass
