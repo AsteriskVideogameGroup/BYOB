@@ -1,3 +1,8 @@
+from src.model.Player import Player
+
 class Room:
-    def __init__(self):
-        print("TODO")
+
+    _arrplayers = None
+
+    def __init__(self, arrplayers):
+        self._arrplayers = None
