@@ -1,10 +1,13 @@
+from src.model.IGameMode import *
+
+
 class GameModeFactory:
     class __Implementation:
         def __init__(self):
             pass
 
-        def getGameMode() -> :
-            """ Request to join a new Game """
+        def getGameMode(modeid: str) -> IGameMode:
+            """ Translate modeid to the proper IGameMode """
 
             # TODO
             pass

@@ -1,15 +1,15 @@
 from typing import Dict
-from src.model.GameMode import *
+from src.model.IGameMode import *
 
 class MatchMaker:
 
-    _modes: Dict[str, GameMode] = Dict[str, GameMode]  # singleton instance
+    _modes: Dict[str, IGameMode] = Dict[str, IGameMode]  # singleton instance
 
     def __init__(self):
         raise SyntaxError  # throw exception
 
     @classmethod
-    def getInstance(cls, gamemode: str) -> GameMode:
+    def getInstance(cls, gamemode: str) -> IGameMode:
         """
         Gives an instance of the matchmaker suitable for the selected GameMode
 
