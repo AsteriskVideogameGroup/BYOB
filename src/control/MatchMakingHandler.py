@@ -1,5 +1,3 @@
-from src.byob.model import Player
-
 class MatchMakingHandler:
     _instance = None  # singleton instance
 

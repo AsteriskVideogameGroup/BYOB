@@ -1,5 +1,3 @@
-from src.byob.model import Game
-
 class GameHandler:
 
 
