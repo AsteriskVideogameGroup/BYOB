@@ -1,15 +1,27 @@
+from src.model.Player import Player
+from src.control.GameHandler import GameHandler
+
+
 class MatchMakingHandler:
-    _instance = None  # singleton instance
+
+    class __Implementation:
+
+        def __init__(self):
+            pass
+
+        def makeNewGame(self, player: Player, modeid: str = 'nomode', isranked: bool = False) -> GameHandler:
+            """ Request to join a new Game """
+            pass
+
+
+    _instance: __Implementation = None  # singleton instance
 
     def __init__(self):
-        if not MatchMakingHandler._instance:
-            MatchMakingHandler._instance = self
-        else:
-            raise MatchMakingHandler._instance  # throw exception
+        raise MatchMakingHandler._instance  # throw exception
 
     @staticmethod
-    def getInstance():
-        return MatchMakingHandler._instance
+    def getInstance() -> __Implementation:
+        if not MatchMakingHandler._instance:
+            MatchMakingHandler._instance = MatchMakingHandler.__Implementation()
 
-    def makeNewGame(self, player, modeid="nomode", isranked=False):
-        pass
+        return MatchMakingHandler._instance
