@@ -1,4 +1,4 @@
-from src.model.Player import Player
+from src.model.Player import *
 
 class Room:
 

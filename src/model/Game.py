@@ -1,4 +1,4 @@
-from src.model.Room import Room
+from src.model.Room import *
 
 class Game:
 

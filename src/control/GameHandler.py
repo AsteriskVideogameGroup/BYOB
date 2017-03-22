@@ -1,4 +1,4 @@
-from src.model.Game import Game
+from src.model.Game import *
 
 class GameHandler:
 
