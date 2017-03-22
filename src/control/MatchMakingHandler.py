@@ -3,7 +3,7 @@ from src.control.GameHandler import *
 
 
 class MatchMakingHandler:
-    class __Implementation:
+    class _Implementation:
         def __init__(self):
             pass
 
@@ -13,14 +13,14 @@ class MatchMakingHandler:
             # TODO
             pass
 
-    _instance: __Implementation = None  # singleton instance
+    _instance = None  # singleton instance
 
     def __init__(self):
         raise SyntaxError  # throw exception
 
     @classmethod
-    def getInstance(cls) -> __Implementation:
+    def getInstance(cls) -> _Implementation:
         if not cls._instance:
-            cls._instance = cls.__Implementation()
+            cls._instance = cls._Implementation()
 
         return cls._instance
