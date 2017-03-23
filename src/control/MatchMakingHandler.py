@@ -1,5 +1,5 @@
-from src.model.Player import *
 from src.control.GameHandler import *
+from src.model.domain.Player import *
 
 
 class MatchMakingHandler:

@@ -1,9 +1,11 @@
 from typing import Dict
-from src.model.IGameMode import *
+
+from src.model.domain.gamemode.IGameMode import *
+
 
 class MatchMaker:
 
-    _modes: Dict[str, IGameMode] = Dict[str, IGameMode]  # singleton instance
+    _modes = Dict[str, IGameMode]  # singleton instance
 
     def __init__(self):
         raise SyntaxError  # throw exception

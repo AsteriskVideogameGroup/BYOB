@@ -1,5 +1,3 @@
-from src.model.Player import *
-
 class Room:
 
     _arrplayers = None

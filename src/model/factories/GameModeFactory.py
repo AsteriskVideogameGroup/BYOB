@@ -1,4 +1,4 @@
-from src.model.IGameMode import *
+from src.model.domain.gamemode.IGameMode import *
 
 
 class GameModeFactory:
