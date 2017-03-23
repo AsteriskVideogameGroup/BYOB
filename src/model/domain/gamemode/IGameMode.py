@@ -1,5 +1,5 @@
 from src.model.factories.IEnvironmentObjectFactory import *
-from src.utile.Dimensions import *
+from src.utility.Dimensions import *
 
 
 class IGameMode(metaclass=abc.ABCMeta):

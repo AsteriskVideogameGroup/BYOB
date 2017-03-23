@@ -1,6 +1,6 @@
 from src.model.domain.BoB import *
 from src.model.factories.IEnvironmentObjectFactory import *
-from src.utile.Dimensions import *
+from src.utility.Dimensions import *
 
 
 class Map:
