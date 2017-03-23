@@ -2,8 +2,10 @@ from src.model.Game import *
 
 class GameHandler:
 
-    def __init__(self, game):
-        print("TODO")
+    _currentgame = None
+
+    def __init__(self, newgame: Game):
+        self._currentgame = newgame
 
     def prepareGame(self):
-        print("TODO")
+        self._currentgame.prepareGame()

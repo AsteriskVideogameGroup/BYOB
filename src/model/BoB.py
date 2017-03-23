@@ -1,0 +1,2 @@
+class BoB:
+    pass

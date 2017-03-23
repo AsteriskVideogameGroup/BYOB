@@ -1,12 +1,26 @@
-from abc import ABCMeta
+import abc
 from src.utile.Dimensions import *
+from src.model.IEnvironmentObjectFactory import *
 
-class IGameMode(metaclass=ABCMeta):
+class IGameMode(metaclass=abc.ABCMeta):
 
-    @ABCMeta.abstractmethod
+
+    @abc.abstractclassmethod
+    def getInstance(cls):
+        pass
+
+    @abc.abstractmethod
     def getMapDimensions(self) -> Dimensions:
         pass
 
-    @ABCMeta.abstractmethod
-    def getEnvironmentObjectFactory(self) -> :
+    @abc.abstractmethod
+    def getEnvironmentObjectFactory(self) -> IEnvironmentObjectFactory:
         pass
+
+    @abc.abstractmethod
+    def getInvulnerabilityTime(self) -> int:
+        pass
+
+    
+
+
