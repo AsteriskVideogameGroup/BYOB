@@ -1,5 +1,6 @@
-from src.model.factories.IEnvironmentObjectFactory import *
-from src.utility.Dimensions import *
+import abc
+from src.model.factories.IEnvironmentObjectFactory import IEnvironmentObjectFactory
+from src.utility.Dimensions import Dimensions
 
 
 class IGameMode(metaclass=abc.ABCMeta):
@@ -33,6 +34,11 @@ class IGameMode(metaclass=abc.ABCMeta):
         """
         pass
 
+    @abc.abstractmethod
+    def getMaxPlayers(self) -> int:
+        """
+        Get the number of player who can play contemporary in this mode
 
-
-
+        :return:
+        """
+        pass

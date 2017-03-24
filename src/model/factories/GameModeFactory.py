@@ -1,5 +1,6 @@
 from src.model.domain.gamemode.IGameMode import IGameMode
 from src.model.domain.gamemode.ClassicMode import ClassicMode
+from src.model.domain.gamemode.DifferentMode import DifferentMode
 
 
 class GameModeFactory:
@@ -12,7 +13,7 @@ class GameModeFactory:
     def getInstance(cls) -> 'GameModeFactory':
         return cls.__new__(cls)
 
-    def getGameMode(self, modeid: str) -> ClassicMode: # TODO cambiare in IgameMode
+    def getGameMode(self, modeid: str) -> IGameMode:
         """
         Translate the gamemode ID in the selected GameMode and add it tho _modes
 

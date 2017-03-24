@@ -1,13 +1,13 @@
 from src.model.domain.gamemode.IGameMode import IGameMode
 
 
-class ClassicMode(IGameMode):
+class DifferentMode(IGameMode):
 
     def __init__(self):
-        self._maxplayer = 4
+        self._maxplayer = 7
 
     def __str__(self):
-        return "classico"
+        return "diff"
 
     def getMaxPlayers(self):
         return self._maxplayer

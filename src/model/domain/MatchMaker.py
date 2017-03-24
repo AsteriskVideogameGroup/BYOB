@@ -1,7 +1,10 @@
 from typing import List
-from src.model.domain.gamemode.ClassicMode import ClassicMode
-from src.utility.ClientInfos import ClientInfos
+
+from src.control.GameHandler import GameHandler
+from src.model.domain.ClientInfos import ClientInfos
+from src.model.domain.Game import Game
 from src.model.factories.GameModeFactory import GameModeFactory
+from src.model.domain.Room import Room
 
 
 class MatchMaker:
@@ -29,17 +32,6 @@ class MatchMaker:
         """
         return cls.__new__(cls, gamemode)
 
-    @classmethod
-    def _translateModeID(cls, gamemode: str) -> ClassicMode:
-        """
-        Translate the gamemode ID in the selected GameMode and add it tho _modes
-
-        :param gamemode: String ID of the GameMode
-        """
-        newmodeclass = globals()[gamemode]
-
-        return newmodeclass()
-
     def pushPlayer(self, client: ClientInfos, isranked: bool):
         """
         Add a Client to the list of the availables
@@ -56,11 +48,24 @@ class MatchMaker:
             self._extractClients(self._unrankedqueue)
 
     def _extractClients(self, queue: List[ClientInfos]):
-        maxplayer = self._mode.maxplayer # maxplayers depends on the GameMode
+        maxplayer = self._mode.getMaxPlayers() # maxplayers depends on the GameMode
         if len(queue) >= maxplayer:
+
+            playerroom = Room()  # bundle of player that will play
+            arrclients = list()  # list of the selected players
+
             for i in range(0, maxplayer):
-                client = queue.pop(0) # prendi sempre il primo
-                client.update()
+                client = queue.pop(0)
+                playerroom.addPlayer(client.player)
+                arrclients.append(client)
+
+            newgame = Game(playerroom, self._mode)  # instantiate the new game
+
+            ghandle = GameHandler(newgame)  # creates the new controller for the clients
+            for client in arrclients:  # update all client observers
+                client.update(ghandle)
+
         else:
-            print("Ho cercato di fare update")  # TODO rimuovere
+            print("Ho cercato di fare update " + self._mode.__str__())  # TODO rimuovere
+
 

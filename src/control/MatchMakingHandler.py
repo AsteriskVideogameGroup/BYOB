@@ -1,5 +1,5 @@
-from src.control.GameHandler import GameHandler
-from src.model.domain.Player import Player
+from src.model.domain.ClientInfos import ClientInfos
+from src.model.domain.MatchMaker import MatchMaker
 
 
 class MatchMakingHandler:
@@ -13,12 +13,13 @@ class MatchMakingHandler:
     def getInstance(cls) -> 'MatchMakingHandler':
         return cls.__new__(cls)
 
-    def makeNewGame(self, player: Player, modeid: str = 'nomode', isranked: bool = False) -> GameHandler:
+    def makeNewGame(self, client: ClientInfos, modeid: str = 'nomode', isranked: bool = False):
         """
         Request to start a new game
 
-        :param player: Player who wants to start a game
+        :param client: Infos of the client of player who wants to start a game
         :param modeid: String ID of the Game Mode
         :param isranked: False if the game is not ranked
         """
-        pass  # TODO
+
+        MatchMaker(modeid).pushPlayer(client, isranked)

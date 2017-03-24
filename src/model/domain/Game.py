@@ -1,7 +1,8 @@
-from src.model.domain.Map import *
-from src.model.domain.Room import *
-from src.model.domain.gamemode.IGameMode import *
-from src.model.factories.StrategyFactory import *
+from src.model.domain.Map import Map
+from src.model.domain.Room import Room
+from src.model.domain.gamemode.IGameMode import IGameMode
+from src.model.factories.StrategyFactory import StrategyFactory
+from src.model.domain.BoB import BoB
 
 
 class Game:
