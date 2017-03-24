@@ -9,7 +9,9 @@ class Map:
     _invtime = None
     _dimensions = None
     _bobarray = None
+    _poweruparray = None
     _strategy = None
+    _placablepowups = None
 
     def __init__(self, envobjfactory: IEnvironmentObjectFactory, invtime: int):
 
@@ -43,4 +45,8 @@ class Map:
     def prepareMap(self):
         samplesDestrObstacle = self._envobjfactory.getDestructibleObstacles()
         samplesUndestrObstacle = self._envobjfactory.getUndestructibleOstacles()
-        samplesPowerUps = self._envobjfactory.getPowerUps()
+        self._placeablepowups = self._envobjfactory.getPowerUps()
+
+        self._strategy.disposeUndestrObstacles(self, samplesUndestrObstacle)
+        self._strategy.disposeBoBs(self, self._bobarray)
+        self._strategy.disposeDestrObstacles(self, samplesDestrObstacle)

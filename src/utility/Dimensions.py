@@ -5,14 +5,20 @@ class Dimensions:
 
     def __init__(self):
         self._width = 0
-        self._y = 0
+        self._height = 0
 
     def __init__(self, width: int, height: int):
         self._width = width
         self._height = height
 
-    def setX(self, width: int):
+    def setWidth(self, width: int):
         self._width = width
 
-    def setY(self, height: int):
+    def setHeight(self, height: int):
         self._height = height
+
+    def getHeight(self):
+        return self._height
+
+    def getWidth(self):
+        return self._width
