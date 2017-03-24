@@ -4,7 +4,6 @@ from src.model.domain.obstacle.UndestructibleObstacle import *
 from src.model.domain.powerup.IPowerUp import *
 
 
-
 class IEnvironmentObjectFactory(metaclass=abc.ABCMeta):
 
     @abc.abstractclassmethod

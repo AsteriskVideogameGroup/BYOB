@@ -1,6 +1,7 @@
 from src.model.domain.Map import *
 from src.model.domain.Room import *
 from src.model.domain.gamemode.IGameMode import *
+from src.model.factories.StrategyFactory import *
 
 
 class Game:
@@ -8,6 +9,7 @@ class Game:
     _gameroom = None
     _currentmode = None
     _bobarray = None
+    _gamemap = None
 
     def __init__(self, playerroom: Room, gamemode: IGameMode):
         """
@@ -36,5 +38,14 @@ class Game:
         dims = self._currentmode.getMapDimensions()
         envobj = self._currentmode.getEnvironmentObjectFactory()
         invtime = self._currentmode.getInvulnerabilityTime()
-        gamemap = Map(envobj, invtime)
+
+        algo = StrategyFactory.getInstance().getMapStrategy()
+
+        self._gamemap = Map(envobj, invtime)
+        self._gamemap.setBoBs(self._bobarray)
+        self._gamemap.setDimensions(dims)
+        self._gamemap.setMapStrategy(algo)
+        self._gamemap.prepareMap()
+
+
 
