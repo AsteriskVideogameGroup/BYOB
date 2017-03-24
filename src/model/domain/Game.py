@@ -1,9 +1,9 @@
-from src.model.domain.Map import *
-from src.model.domain.Room import *
-from src.model.domain.gamemode.IGameMode import *
-from src.model.factories.StrategyFactory import *
-from src.model.domain.BoB import *
-import time
+from src.model.domain.Map import Map
+from src.model.domain.Room import Room
+from src.model.domain.gamemode.IGameMode import IGameMode
+from src.model.factories.StrategyFactory import StrategyFactory
+from src.model.domain.BoB import BoB
+
 
 class Game:
 
@@ -11,7 +11,6 @@ class Game:
     _currentmode = None
     _bobarray = None
     _gamemap = None
-    _endgametime = None
 
     def __init__(self, playerroom: Room, gamemode: IGameMode):
         """
@@ -48,22 +47,6 @@ class Game:
         self._gamemap.setDimensions(dims)
         self._gamemap.setMapStrategy(algo)
         self._gamemap.prepareMap()
-
-    def startGame(self) -> bool:
-        """
-        Start the game computing the end time.
-
-        :return: True signaling the start to gamehandler
-        """
-
-        duration = self._currentmode.getDuration()
-        starttime = time.time()
-        self.endgametime = starttime + duration*60
-        return True
-
-
-
-
 
 
 

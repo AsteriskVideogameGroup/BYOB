@@ -1,7 +1,7 @@
-from src.model.factories.IEnvironmentObjectFactory import *
-from src.utility.Dimensions import *
-from src.utility.mapstrategy.IMapStrategy import *
-from src.model.domain.IMapElement import *
+from src.model.factories.IEnvironmentObjectFactory import IEnvironmentObjectFactory
+from src.utility.Dimensions import Dimensions
+from src.utility.mapstrategy.IMapStrategy import IMapStrategy
+
 
 class Map:
 

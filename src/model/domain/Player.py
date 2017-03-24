@@ -1,3 +1,3 @@
 class Player:
-    def __init__(self, player):
+    def __init__(self):
         pass

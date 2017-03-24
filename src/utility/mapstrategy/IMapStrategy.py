@@ -1,5 +1,6 @@
 import abc
-from src.model.domain.Map import *
+from src.model.domain.Map import Map
+
 
 class IMapStrategy (metaclass=abc.ABCMeta):
 
