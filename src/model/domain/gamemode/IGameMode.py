@@ -33,6 +33,11 @@ class IGameMode(metaclass=abc.ABCMeta):
         """
         pass
 
+    @abc.abstractmethod
+    def getDuration(self) -> int:
+        """
 
-
+        :return: duration of each game of the same mode, in minutes
+        """
+        pass
 

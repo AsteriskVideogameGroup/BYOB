@@ -33,6 +33,6 @@ class IEnvironmentObjectFactory(metaclass=abc.ABCMeta):
         """
         Getter for the power ups for a given mode
 
-        :return: a list of differents power ups
+        :return: a list of different power ups
         """
         pass
