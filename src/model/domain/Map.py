@@ -18,7 +18,7 @@ class Map:
         self._envobjfactory = envobjfactory
         self._invtime = invtime
 
-   def setMapStrategy(self, mapstrategy: IMapStrategy):
+    def setMapStrategy(self, mapstrategy: IMapStrategy):
         """
         Setting of the positioning algorithm
 
