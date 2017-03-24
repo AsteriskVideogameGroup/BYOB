@@ -1,25 +1,24 @@
-from src.model.domain.gamemode.IGameMode import *
+from src.model.domain.gamemode.IGameMode import IGameMode
+from src.model.domain.gamemode.ClassicMode import ClassicMode
 
 
 class GameModeFactory:
-    class _Implementation:
-        def __init__(self):
-            pass
-
-        def getGameMode(modeid: str) -> IGameMode:
-            """ Translate modeid to the proper IGameMode """
-
-            # TODO
-            pass
-
-    _instance = None  # singleton instance
-
-    def __init__(self):
-        raise SyntaxError  # throw exception
+    def __new__(cls, *args, **kwargs) -> 'GameModeFactory':
+        if not hasattr(cls, '_instance'):
+            cls._instance = super().__new__(cls)
+        return cls._instance
 
     @classmethod
-    def getInstance(cls) -> _Implementation:
-        if not cls._instance:
-            cls._instance = cls._Implementation()
+    def getInstance(cls) -> 'GameModeFactory':
+        return cls.__new__(cls)
 
-        return cls._instance
+    def getGameMode(self, modeid: str) -> ClassicMode: # TODO cambiare in IgameMode
+        """
+        Translate the gamemode ID in the selected GameMode and add it tho _modes
+
+        :param modeid: String ID of the GameMode
+        """
+        newmodeclass = globals()[modeid]
+
+        return newmodeclass()
+
