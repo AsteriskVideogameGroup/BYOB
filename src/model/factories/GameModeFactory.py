@@ -22,7 +22,8 @@ class GameModeFactory:
 
         modelist = GlobalSettings().getSetting(MODES)  # list of all available mods
 
-        currentmode = modelist.get(modeid, DEFAULT_MODE)
+        print(modeid)
+        currentmode = modelist.get(modeid, modelist[DEFAULT_MODE])
 
         newmodeclass = globals()[currentmode]
 

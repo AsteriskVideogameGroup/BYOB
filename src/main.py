@@ -11,7 +11,7 @@ MatchMakingHandler().makeNewGame(client, mode, isranked)
 
 player = Player()
 client = ClientInfos(player)
-mode = 'ClassicMode'
+mode = 'fasdgdfg'
 isranked = False
 
 MatchMakingHandler().makeNewGame(client, mode, isranked)
