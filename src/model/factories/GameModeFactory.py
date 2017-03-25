@@ -18,13 +18,9 @@ class GameModeFactory:
         """
 
         MODES = 'modes'  # name of the mode setting
-        DEFAULT_MODE = 'default'
 
-        modelist = GlobalSettings().getSetting(MODES)  # list of all available mods
+        modelist = GlobalSettings().getSetting(MODES)  # list of all available modes
 
-        print(modeid)
-        currentmode = modelist.get(modeid, modelist[DEFAULT_MODE])
-
-        newmodeclass = globals()[currentmode]
+        newmodeclass = globals()[modelist.get(modeid)]  # instantiare the new modality (remember that it's simgleton)
 
         return newmodeclass()

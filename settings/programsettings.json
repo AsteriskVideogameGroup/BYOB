@@ -1,6 +1,5 @@
 {
   "modes" : {
-    "classic": "ClassicMode",
-    "default": "ClassicMode"
+    "classic": "ClassicMode"
   }
 }
