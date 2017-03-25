@@ -1,37 +1,13 @@
-from src.control.MatchMakingHandler import MatchMakingHandler
-from src.model.domain.ClientInfos import ClientInfos
-from src.model.domain.Player import Player
+from src.utility.mapstrategy.FirstMapStrategy import *
+from src.model.domain.BoB import *
+from src.utility.Dimensions import *
+from src.utility.Position import *
+from src.model.domain.obstacle.UndestructibleObstacle import *
 
-player = Player()
-client = ClientInfos(player)
-mode = 'ClassicMode'
-isranked = False
-
-MatchMakingHandler().makeNewGame(client, mode, isranked)
-
-player = Player()
-client = ClientInfos(player)
-mode = 'fasdgdfg'
-isranked = False
-
-MatchMakingHandler().makeNewGame(client, mode, isranked)
-
-player = Player()
-client = ClientInfos(player)
-mode = 'ClassicMode'
-isranked = False
-
-MatchMakingHandler().makeNewGame(client, mode, isranked)
-
-player = Player()
-client = ClientInfos(player)
-mode = 'ClassicMode'
-isranked = False
-
-MatchMakingHandler().makeNewGame(client, mode, isranked)
-player = Player()
-client = ClientInfos(player)
-mode = 'ClassicMode'
-isranked = False
-
-MatchMakingHandler().makeNewGame(client, mode, isranked)
+m = Map()
+m.setDimensions(Dimensions(11,17))
+algo = FirstMapStrategy()
+b = [UndestructibleObstacle()]
+algo.disposeUndestrObstacles(m,b)
+for bob in m._undstrobstaclearray:
+    print("("+str(bob.getPosition().getX())+","+str(bob.getPosition().getY())+")")
