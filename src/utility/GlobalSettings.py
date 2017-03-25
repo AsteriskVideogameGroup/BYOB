@@ -24,5 +24,5 @@ class GlobalSettings:
     def _setup(self):
         with open(self._settingpath) as settings_file:
             self._settings = {**self._settings, **json.load(settings_file)}
-            print(self._settings['modes'])
+            # print(self._settings['modes'])
 
