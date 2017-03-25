@@ -1,8 +1,5 @@
 from typing import List
-
-from src.control.GameHandler import GameHandler
 from src.model.domain.ClientInfos import ClientInfos
-from src.model.domain.Game import Game
 from src.model.factories.GameModeFactory import GameModeFactory
 from src.model.domain.Room import Room
 
@@ -13,7 +10,7 @@ class MatchMaker:
 
     def __new__(cls, *args, **kwargs) -> 'MatchMaker':
         if cls._modes.get(args[0], None) is None:
-            mode = GameModeFactory.getInstance().getGameMode(args[0])  # translate gamemode ID to IGameMode
+            mode = GameModeFactory().getGameMode(args[0])  # translate gamemode ID to IGameMode
             newmatchmaker = super().__new__(cls)  # instantiate new Matchmaker
             newmatchmaker._mode = mode  # assign a mode to the matchmaker
             newmatchmaker._unrankedqueue = list()
@@ -47,8 +44,10 @@ class MatchMaker:
             self._extractClients(self._unrankedqueue)
 
     def _extractClients(self, queue: List[ClientInfos]):
-        maxplayer = self._mode.getMaxPlayers() # maxplayers depends on the GameMode
+        maxplayer = self._mode.getMaxPlayers()  # maxplayers depends on the GameMode
         if len(queue) >= maxplayer:
+
+            print("Room pronta con " + str(len(queue)) + " gioacatori")  # TODO rimuovi
 
             playerroom = Room()  # bundle of player that will play
             arrclients = list()  # list of the selected players
@@ -58,12 +57,15 @@ class MatchMaker:
                 playerroom.addPlayer(client.player)
                 arrclients.append(client)
 
-            # newgame = Game(playerroom, self._mode)  # instantiate the new game
-            newgame = None
+            # TODO da completare quando la Map sarà corretta
+            
+            #newgame = Game(playerroom, self._mode)  # instantiate the new game
+            # newgame = None
 
-            ghandle = GameHandler(newgame)  # creates the new controller for the clients
-            for client in arrclients:  # update all client observers
-                client.update(ghandle)
+            #ghandle = GameHandler(newgame)  # creates the new controller for the clients
+            #for client in arrclients:  # update all client observers
+                #client.update(ghandle)
+
 
         else:
-            print("Ho cercato di fare update " + self._mode.__str__())  # TODO rimuovere
+            print("Ho cercato di fare update ")  # TODO rimuovere
