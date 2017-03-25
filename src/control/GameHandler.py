@@ -1,12 +1,13 @@
 from src.model.domain.Game import *
-
+from src.model.domain.BoB import BoBBuilder
+from src.model.domain.Game import *
 
 class GameHandler:
 
     _currentgame = None
     _started = None
 
-    def __init__(self, newgame: Game):
+    def __init__(self, newgame):
         """
 
         :param newgame: Game object to handle
@@ -19,3 +20,7 @@ class GameHandler:
 
         self._currentgame.prepareGame()
         self._started = self._currentgame.startGame()
+
+    def chooseBoB(self, bobnameid, owner):
+        newbob = BoBBuilder.createBob(bobnameid, owner)
+        addBoB(newbob)
