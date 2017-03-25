@@ -1,7 +1,8 @@
 from src.model.factories.IEnvironmentObjectFactory import IEnvironmentObjectFactory
 from src.utility.Dimensions import Dimensions
 from src.utility.mapstrategy.IMapStrategy import IMapStrategy
-
+from src.model.domain.IMapElement import IMapElement
+from src.utility.Position import Position
 
 class Map:
 
@@ -18,11 +19,14 @@ class Map:
     # Dictionary that records the occupied positions (structure = (position,element) )
     _occupiedpositions = None
 
-    def __init__(self, envobjfactory: IEnvironmentObjectFactory, invtime: int):
-
-        self._envobjfactory = envobjfactory
-        self._invtime = invtime
+    def __init__(self):
         self._occupiedpositions = {}
+
+    #def __init__(self, envobjfactory: IEnvironmentObjectFactory, invtime: int):
+
+    #    self._envobjfactory = envobjfactory
+    #    self._invtime = invtime
+    #    self._occupiedpositions = {}
 
     def setMapStrategy(self, mapstrategy: IMapStrategy):
         """

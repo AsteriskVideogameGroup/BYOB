@@ -13,7 +13,7 @@ class IMapElement(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def getPosition(self):
+    def getPosition(self) -> Position:
         """
         Getter of the position of the element
         :return: element's position

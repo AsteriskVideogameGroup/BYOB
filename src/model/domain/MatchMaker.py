@@ -14,7 +14,7 @@ class MatchMaker:
     def __new__(cls, *args, **kwargs) -> 'MatchMaker':
         if cls._modes.get(args[0], None) is None:
             mode = GameModeFactory.getInstance().getGameMode(args[0])  # translate gamemode ID to IGameMode
-            newmatchmaker: 'MatchMaker' = super().__new__(cls)  # instantiate new Matchmaker
+            newmatchmaker = super().__new__(cls)  # instantiate new Matchmaker
             newmatchmaker._mode = mode  # assign a mode to the matchmaker
             newmatchmaker._unrankedqueue = list()
             newmatchmaker._rankedqueue = list()
@@ -26,7 +26,6 @@ class MatchMaker:
     def getInstance(cls, gamemode: str) -> 'MatchMaker':
         """
         Gives an instance of the matchmaker suitable for the selected GameMode
-
         :param gamemode: String ID of the GameMode
         :return: The selected matchmaker for the GameMode
         """
@@ -67,5 +66,3 @@ class MatchMaker:
 
         else:
             print("Ho cercato di fare update " + self._mode.__str__())  # TODO rimuovere
-
-

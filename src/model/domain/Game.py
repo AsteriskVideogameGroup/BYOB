@@ -3,6 +3,7 @@ from src.model.domain.Room import Room
 from src.model.domain.gamemode.IGameMode import IGameMode
 from src.model.factories.StrategyFactory import StrategyFactory
 from src.model.domain.BoB import BoB
+import time
 
 
 class Game:
@@ -14,7 +15,6 @@ class Game:
 
     def __init__(self, playerroom: Room, gamemode: IGameMode):
         """
-
         :param playerroom: virtual room for the players of the game
         :param gamemode: game mode of the game
         """
@@ -25,7 +25,6 @@ class Game:
     def addBoB(self, newbob: BoB):
         """
         Add a BoB to the game
-
         :param newbob: BoB that must be added to the game
         """
         self._bobarray.append(newbob)
@@ -33,7 +32,6 @@ class Game:
     def prepareGame(self):
         """
         Prepare the game for the start
-
         """
 
         dims = self._currentmode.getMapDimensions()
@@ -47,6 +45,21 @@ class Game:
         self._gamemap.setDimensions(dims)
         self._gamemap.setMapStrategy(algo)
         self._gamemap.prepareMap()
+
+    def startGame(self) -> bool:
+        """
+        Start the game computing the end time.
+
+        :return: True signaling the start to gamehandler
+        """
+
+        duration = self._currentmode.getDuration()
+        self.endgametime = time.time() + duration*60
+        return True
+
+
+
+
 
 
 

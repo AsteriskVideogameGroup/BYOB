@@ -10,4 +10,3 @@ class Room:
 
     def addPlayer(self, player: Player):
         self._arrplayers.append(player)
-

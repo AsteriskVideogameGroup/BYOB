@@ -16,10 +16,8 @@ class GameModeFactory:
     def getGameMode(self, modeid: str) -> IGameMode:
         """
         Translate the gamemode ID in the selected GameMode and add it tho _modes
-
         :param modeid: String ID of the GameMode
         """
         newmodeclass = globals()[modeid]
 
         return newmodeclass()
-

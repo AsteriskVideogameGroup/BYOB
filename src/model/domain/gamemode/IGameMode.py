@@ -13,7 +13,6 @@ class IGameMode(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def getMapDimensions(self) -> Dimensions:
         """
-
         :return: map's dimensions for a given mode
         """
         pass
@@ -21,7 +20,6 @@ class IGameMode(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def getEnvironmentObjectFactory(self) -> IEnvironmentObjectFactory:
         """
-
         :return: the factory that must produce the environment objects for a given mode
         """
         pass
@@ -29,7 +27,6 @@ class IGameMode(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def getInvulnerabilityTime(self) -> int:
         """
-
         :return: the time of invulnerability for a, just damaged, Player
         """
         pass
@@ -38,7 +35,15 @@ class IGameMode(metaclass=abc.ABCMeta):
     def getMaxPlayers(self) -> int:
         """
         Get the number of player who can play contemporary in this mode
-
         :return:
         """
         pass
+
+    @abc.abstractmethod
+    def getDuration(self) -> int:
+        """
+
+        :return: duration of each game of the same mode, in minutes
+        """
+        pass
+
