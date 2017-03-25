@@ -58,7 +58,8 @@ class MatchMaker:
                 playerroom.addPlayer(client.player)
                 arrclients.append(client)
 
-            newgame = Game(playerroom, self._mode)  # instantiate the new game
+            # newgame = Game(playerroom, self._mode)  # instantiate the new game
+            newgame = None
 
             ghandle = GameHandler(newgame)  # creates the new controller for the clients
             for client in arrclients:  # update all client observers

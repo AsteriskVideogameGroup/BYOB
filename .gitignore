@@ -1,0 +1,17 @@
+
+.idea/BYOB.iml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/workspace.xml
+src/main.py
+src/__pycache__/
+src/control/__pycache__/
+src/model/__pycache__/
+src/model/domain/__pycache__/
+src/model/domain/gamemode/__pycache__/
+src/model/domain/obstacle/__pycache__/
+src/model/domain/powerup/__pycache__/
+src/model/factories/__pycache__/
+src/utility/__pycache__/
+src/utility/mapstrategy/__pycache__/
