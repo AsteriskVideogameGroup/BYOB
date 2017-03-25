@@ -4,7 +4,7 @@
 .idea/misc.xml
 .idea/modules.xml
 .idea/workspace.xml
-src/main_gio.py
+src/main_gioacchino.py.py
 src/__pycache__/
 src/control/__pycache__/
 src/model/__pycache__/
