@@ -1,6 +1,4 @@
-from src.model.domain.gamemode.IGameMode import IGameMode
-from src.model.domain.gamemode.ClassicMode import ClassicMode
-from src.model.domain.gamemode.DifferentMode import DifferentMode
+from src.model.domain.gamemode import *
 from src.utility.GlobalSettings import GlobalSettings
 
 
