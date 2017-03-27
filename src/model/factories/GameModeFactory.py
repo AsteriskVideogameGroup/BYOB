@@ -1,6 +1,4 @@
-from src.model.domain.gamemode.IGameMode import IGameMode
-from src.model.domain.gamemode.ClassicMode import ClassicMode
-from src.model.domain.gamemode.DifferentMode import DifferentMode
+from src.model.domain.gamemode import *
 from src.utility.GlobalSettings import GlobalSettings
 
 
@@ -18,13 +16,9 @@ class GameModeFactory:
         """
 
         MODES = 'modes'  # name of the mode setting
-        DEFAULT_MODE = 'default'
 
-        modelist = GlobalSettings().getSetting(MODES)  # list of all available mods
+        modelist = GlobalSettings().getSetting(MODES)  # list of all available modes
 
-        print(modeid)
-        currentmode = modelist.get(modeid, modelist[DEFAULT_MODE])
-
-        newmodeclass = globals()[currentmode]
+        newmodeclass = globals()[modelist.get(modeid)]  # instantiare the new modality (remember that it's simgleton)
 
         return newmodeclass()
