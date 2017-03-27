@@ -16,9 +16,9 @@ class GlobalSettings:
         """
         Retrieve the speciefied global setting
         :param setting: Setting to be got
-        :return: Dictionary of settings (returns None if setting doesn't exist)
+        :return: Dictionary of settings (returns empty dict if setting doesn't exist)
         """
-        return self._settings.get(setting, None)
+        return self._settings.get(setting)
 
     def _setup(self):
         with open(self._settingpath) as settings_file:
