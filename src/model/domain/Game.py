@@ -22,7 +22,7 @@ class Game:
         self._gameroom = playerroom
         self._currentmode = gamemode
 
-    def addBoB(self, newbob: BoB):
+    def addBoB(self, newbob):
         """
         Add a BoB to the game
         :param newbob: BoB that must be added to the game

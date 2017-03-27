@@ -1,8 +1,8 @@
-from src.utility.Singleton import Singleton
+from src.utility.MetaSingleton import MetaSingleton
 from src.model.domain.BoB import BoBDescription
 
 
-class BoBCatalog(metaclass=Singleton):
+class BoBCatalog(metaclass=MetaSingleton):
 
     def getBoBByID(self, bobnameid):
         return BoBDescription

@@ -1,6 +1,6 @@
-from src.utility.Singleton import Singleton
+from src.utility.MetaSingleton import MetaSingleton
 
-class BoBDescription(metaclass=Singleton):
+class BoBDescription(metaclass=MetaSingleton):
 
     def getDescription(self):
         return descr
