@@ -37,7 +37,6 @@ class FirstMapStrategy(IMapStrategy):
                         undstrarray.append(newundstr)
 
         map.setUndstrObstacleArray(undstrarray)
-        #TODO TEST
 
     def disposeBoBs(self, map: Map, bobs: list):
 
