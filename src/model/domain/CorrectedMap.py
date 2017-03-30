@@ -1,34 +1,14 @@
-from src.model.factories.IEnvironmentObjectFactory import IEnvironmentObjectFactory
-from src.utility.Dimensions import Dimensions
-from src.utility.mapstrategy.IMapStrategy import IMapStrategy
-from src.model.domain.IMapElement import IMapElement
-from src.utility.Position import Position
+# from src.model.factories.IEnvironmentObjectFactory import IEnvironmentObjectFactory
+from src.utility import Dimensions, Position
+from src.utility.mapstrategy import CorrectedIMapStrategy
+from src.model.domain import IMapElement
+
 
 class Map:
-
-    _envobjfactory = None
-    _invtime = None
-    _dimensions = None
-    _poweruparray = None
-    _strategy = None
-    _placablepowups = None
-
-    _bobarray = None
-    _undstrobstaclearray = None
-
-    # Dictionary that records the occupied positions (structure = (position,element) )
-    _occupiedpositions = None
-
     def __init__(self):
-        self._occupiedpositions = {}
+        self._occupiedpositions = dict()
 
-    #def __init__(self, envobjfactory: IEnvironmentObjectFactory, invtime: int):
-
-    #    self._envobjfactory = envobjfactory
-    #    self._invtime = invtime
-    #    self._occupiedpositions = {}
-
-    def setMapStrategy(self, mapstrategy: IMapStrategy):
+    def setMapStrategy(self, mapstrategy: CorrectedIMapStrategy):
         """
         Setting of the positioning algorithm
 
@@ -57,13 +37,17 @@ class Map:
         Disposing of elements on the map
         """
 
-        samplesDestrObstacle = self._envobjfactory.getDestructibleObstacles()
-        samplesUndestrObstacle = self._envobjfactory.getUndestructibleOstacles()
-        self._placeablepowups = self._envobjfactory.getPowerUps()
+        # samplesDestrObstacle = self._envobjfactory.getDestructibleObstacles()
+        # samplesUndestrObstacle = self._envobjfactory.getUndestructibleOstacles()
+        # self._placeablepowups = self._envobjfactory.getPowerUps()
 
-        self._strategy.disposeUndestrObstacles(self, samplesUndestrObstacle)
-        self._strategy.disposeBoBs(self, self._bobarray)
-        self._strategy.disposeDestrObstacles(self, samplesDestrObstacle)
+        # self._strategy.disposeUndestrObstacles(self, samplesUndestrObstacle)
+
+        # place BoBs on the Map
+        listbobpositions = self._strategy.disposeBoBs(self, self._bobarray, self._dimensions)
+        self.occupyPositions(listbobpositions)
+
+        # self._strategy.disposeDestrObstacles(self, samplesDestrObstacle)
 
     def getDimensions(self):
         """
@@ -99,3 +83,7 @@ class Map:
         """
 
         self._occupiedpositions[mapelement.getPosition()] = mapelement
+
+    def occupyPositions(self, mapelements: list):
+        for singleelement in mapelements:
+            self.occupyPosition(singleelement)
