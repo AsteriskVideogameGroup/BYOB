@@ -1,6 +1,6 @@
 from src.model.domain.IMapElement import *
 
-
+#TODO Chiarire perchè non viene accettato il file BoB.py negli import e rimuovere commento qui e in CorrectedBoB.py
 class BoB (IMapElement):
 
     _position = None
