@@ -1,5 +1,5 @@
 from src.utility.mapstrategy.FirstMapStrategy import *
-from src.model.domain.BoB import *
+from src.model.domain.bob import *
 from src.utility.Dimensions import *
 from src.utility.Position import *
 from src.model.domain.obstacle.UndestructibleObstacle import *

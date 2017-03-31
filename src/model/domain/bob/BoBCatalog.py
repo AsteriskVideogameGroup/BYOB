@@ -1,5 +1,5 @@
 from src.utility.MetaSingleton import MetaSingleton
-from src.model.domain.BoB import BoBDescription
+from src.model.domain.bob import BoBDescription
 
 
 class BoBCatalog(metaclass=MetaSingleton):

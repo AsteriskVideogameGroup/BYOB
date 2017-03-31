@@ -24,8 +24,8 @@ class Game:
 
     def addBoB(self, newbob):
         """
-        Add a BoB to the game
-        :param newbob: BoB that must be added to the game
+        Add a bob to the game
+        :param newbob: bob that must be added to the game
         """
         self._bobarray.append(newbob)
 

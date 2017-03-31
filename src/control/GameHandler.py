@@ -1,5 +1,5 @@
 from src.model.domain.Game import *
-from src.model.domain.BoB import BoBBuilder
+from src.model.domain.bob import BoBBuilder
 from src.model.domain.Game import *
 
 class GameHandler:
