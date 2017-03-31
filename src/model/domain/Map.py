@@ -1,8 +1,9 @@
 from src.model.factories.IEnvironmentObjectFactory import IEnvironmentObjectFactory
-from src.utility.Dimensions import Dimensions
-from src.utility.mapstrategy.IMapStrategy import IMapStrategy
-from src.model.domain.IMapElement import IMapElement
-from src.utility.Position import Position
+
+from src.utility import Dimensions, Position
+from src.utility.mapstrategy import IMapStrategy
+from src.model.domain import IMapElement
+
 
 class Map:
 
@@ -19,9 +20,11 @@ class Map:
     # Dictionary that records the occupied positions (structure = (position,element) )
     _occupiedpositions = None
 
+    #TODO RIMUOVERE QUESTO COSTRUTTORE, UTILIZZATO SOLO PER TESTING
     def __init__(self):
         self._occupiedpositions = {}
 
+    #TODO TOGLIERE I COMMENTI A QUESTO COSTRUTTORE
     #def __init__(self, envobjfactory: IEnvironmentObjectFactory, invtime: int):
 
     #    self._envobjfactory = envobjfactory
@@ -61,9 +64,15 @@ class Map:
         samplesUndestrObstacle = self._envobjfactory.getUndestructibleOstacles()
         self._placeablepowups = self._envobjfactory.getPowerUps()
 
-        self._strategy.disposeUndestrObstacles(self, samplesUndestrObstacle)
-        self._strategy.disposeBoBs(self, self._bobarray)
-        self._strategy.disposeDestrObstacles(self, samplesDestrObstacle)
+        self.setUndstrObstacleArray(self._strategy.disposeUndestrObstacles(samplesUndestrObstacle, self._dimensions))
+
+        # Unlike obstacles, the bobs setter doesn't occupy the position
+        # so it must be occupied during preparemap()
+        self._strategy.disposeBoBs(self._bobarray, self._dimensions)
+        self._occupyElementsPositions(self._bobarray)
+
+
+        #self._strategy.disposeDestrObstacles(self, samplesDestrObstacle)
 
     def getDimensions(self):
         """
@@ -89,10 +98,13 @@ class Map:
         """
 
         self._undstrobstaclearray = undstrarray
-        for ele in undstrarray:
-            self.occupyPosition(ele)
+        self._occupyElementsPositions(undstrarray)
 
-    def occupyPosition(self, mapelement: IMapElement):
+    def _occupyElementsPositions(self, imapelements: list):
+        for ele in imapelements:
+            self._occupyPosition(ele)
+
+    def _occupyPosition(self, mapelement: IMapElement):
         """
         Occupy the position of element in the inner dictionary for the occupied positions
         :param mapelement: map element occuping a position

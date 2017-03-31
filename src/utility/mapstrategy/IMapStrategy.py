@@ -1,21 +1,21 @@
 import abc
-from src.model.domain.Map import Map
+from src.utility import Dimensions
 
 
 class IMapStrategy(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
-    def disposeDestrObstacles(self, map: Map, dstrobstacles: list):
+    def disposeDestrObstacles(self, dstrobstacles: list, dim: Dimensions) -> list:
         pass
 
     @abc.abstractmethod
-    def disposeUndestrObstacles(self, map: Map, undstrobstacles: list):
+    def disposeUndestrObstacles(self, undstrobstacles: list, dim: Dimensions) -> list:
         pass
 
     @abc.abstractmethod
-    def disposeBoBs(self, map: Map, bobs: list):
+    def disposeBoBs(self, bobs: list, dim: Dimensions):
         pass
 
     @abc.abstractmethod
-    def disposePowerUps(self, map: Map, powerups: list):
+    def disposePowerUps(self, powerups: list, dim: Dimensions) -> list:
         pass
