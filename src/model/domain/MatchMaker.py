@@ -1,7 +1,7 @@
 from typing import List
-from src.model.domain import ClientInfos, Room
+from src.model.domain import ClientInfos
 from src.model.factories import GameModeFactory
-
+from .Room import Room
 
 class MatchMaker:
 

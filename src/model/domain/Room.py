@@ -1,4 +1,4 @@
-from src.model.domain.Player import Player
+from src.model.domain import Player
 
 
 class Room:
