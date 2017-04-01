@@ -187,14 +187,6 @@ class FirstMapStrategy(IMapStrategy):
 
         return safearea
 
-
-
-
-
-
-
-
-
     def disposePowerUps(self, powerups: list, dim: Dimensions) -> list:
         #TODO
         pass
