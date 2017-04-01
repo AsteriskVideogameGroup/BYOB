@@ -1,7 +1,10 @@
 from typing import List
+from src.control.GameHandler import GameHandler # TODO correggere
 from src.model.domain import ClientInfos
 from src.model.factories import GameModeFactory
 from .Room import Room
+from .Game import Game
+
 
 class MatchMaker:
 
@@ -58,12 +61,11 @@ class MatchMaker:
 
             # TODO da completare quando la Map sarà corretta
             
-            #newgame = Game(playerroom, self._mode)  # instantiate the new game
-            # newgame = None
+            newgame = Game(playerroom, self._mode)  # instantiate the new game
+            ghandle = GameHandler(newgame)  # creates the new controller for the clients
 
-            #ghandle = GameHandler(newgame)  # creates the new controller for the clients
-            #for client in arrclients:  # update all client observers
-                #client.update(ghandle)
+            for client in arrclients:  # update all client observers
+                client.update(ghandle)
 
 
         else:

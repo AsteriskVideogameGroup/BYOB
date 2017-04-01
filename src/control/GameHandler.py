@@ -1,14 +1,13 @@
 from src.model.domain.bob import BoBBuilder
 from src.model.domain import Game
-from src.utility import MetaSingleton
 
 
-class GameHandler(metaclass=MetaSingleton):
+class GameHandler:
 
     _currentgame = None
     _started = None
 
-    def __init__(self, newgame):
+    def __init__(self, newgame: Game):
         """
 
         :param newgame: Game object to handle
@@ -24,4 +23,4 @@ class GameHandler(metaclass=MetaSingleton):
 
     def chooseBoB(self, bobnameid, owner):
         newbob = BoBBuilder.createBob(bobnameid, owner)
-        addBoB(newbob)
+        # addBoB(newbob)
