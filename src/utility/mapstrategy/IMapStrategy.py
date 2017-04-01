@@ -5,7 +5,7 @@ from src.utility import Dimensions
 class IMapStrategy(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
-    def disposeDestrObstacles(self, dstrobstacles: list, dim: Dimensions) -> list:
+    def disposeDestrObstacles(self, dstrobstacles: list, dim: Dimensions, bobs: list) -> list:
         pass
 
     @abc.abstractmethod

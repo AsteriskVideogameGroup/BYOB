@@ -1,8 +1,6 @@
-from src.model.domain.Map import Map
-from src.model.domain.Room import Room
-from src.model.domain.gamemode.IGameMode import IGameMode
-from src.model.factories.StrategyFactory import StrategyFactory
-from src.model.domain.BoB import BoB
+from src.model.domain import Map, Room, BoB
+from src.model.domain.gamemode import IGameMode
+from src.model.factories import StrategyFactory
 import time
 
 
@@ -39,11 +37,15 @@ class Game:
         invtime = self._currentmode.getInvulnerabilityTime()
 
         algo = StrategyFactory.getInstance().getMapStrategy()
+        # TODO: in visual paradigm dovremmo aggiornare la questione della strategy
+        # sembra legittimo mettere come parametri per il costruttore la factory
+        # degli elementi e la strategia di disposizione
 
-        self._gamemap = Map(envobj, invtime)
+        self._gamemap = Map(envobj, algo)
+
+        self._gamemap.setInvulnerabilityTime(invtime)
         self._gamemap.setBoBs(self._bobarray)
         self._gamemap.setDimensions(dims)
-        self._gamemap.setMapStrategy(algo)
         self._gamemap.prepareMap()
 
     def startGame(self) -> bool:

@@ -18,3 +18,6 @@ class Position:
 
     def getY(self):
         return self._y
+
+    def toString(self):
+        return "("+str(self._x)+","+str(self._y)+")"

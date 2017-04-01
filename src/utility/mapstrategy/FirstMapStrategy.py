@@ -17,12 +17,13 @@ class FirstMapStrategy(IMapStrategy):
 
         :param undstrobstacles: list of different sample of undestructible obstacles that must be placed
         :param dim: dimensions of the map to be filled
+        :return: list of undestructible obstacles that are positioned
         """
 
         height = dim.getHeight()
         width = dim.getWidth()
 
-        undestractibleelementslist = list()
+        undestructibleelementslist = list()
 
         for i in range(1, height):
             if i%2 == 0:
@@ -30,9 +31,9 @@ class FirstMapStrategy(IMapStrategy):
                     if j%2 == 0:
                         newundstr = copy.deepcopy(random.choice(undstrobstacles))
                         newundstr.setPosition(Position(i, j))
-                        undestractibleelementslist.append(newundstr)
+                        undestructibleelementslist.append(newundstr)
 
-        return undestractibleelementslist
+        return undestructibleelementslist
 
     def disposeBoBs(self, bobs: list, dim: Dimensions):
 
@@ -115,9 +116,83 @@ class FirstMapStrategy(IMapStrategy):
 
         return remainingbobs, bobit
 
-    def disposeDestrObstacles(self, dstrobstacles: list, dim: Dimensions) -> list:
-        #TODO
-        pass
+    def disposeDestrObstacles(self, dstrobstacles: list, dim: Dimensions, bobs: list) -> list:
+        # TODO: test
+
+        """
+        Dispose undestructible obstacles inside a map
+
+        :param undstrobstacles: list of different samples of destructible obstacles that must be placed
+        :param dim: dimensions of the map to be filled
+        :param bobs: list of bobs from which is computed the safe area (obstacles cannot be in safe area)
+        :return: list of destructible obstacles that are positioned
+        """
+
+        MINDIST = 1                         # Minimum distance from bobs
+        PLACINGPROBABILITY = 0.33           # Probability of placing obstacle in a given position
+
+        destructibleelementslist = list()
+
+        safearea = self._selectSafeArea(dim,bobs,MINDIST)
+
+        for y in range(1,dim.getHeight()):
+            for x in range(1,dim.getWidth()):
+                if not ((x % 2 == 0) and (y % 2 == 0)): # if the position is not (even,even) resume
+
+                    newposition = Position(x,y)
+                    if not (newposition.toString() in safearea): # if the position is not in the safearea
+                        if random.random() < PLACINGPROBABILITY:
+
+                            newobstacle = copy.deepcopy(random.choice(dstrobstacles))
+                            newobstacle.setPosition(newposition)
+
+                            destructibleelementslist.append(newobstacle)
+
+        return destructibleelementslist
+
+    def _selectSafeArea(self, dim: Dimensions, bobs: list, mindist: int) -> list:
+        """
+        Select area that must be free near bobs
+        :param dim: dimensions of the map where to select the safe area
+        :param bobs: bob array from which is computed the safe area
+        :param mindist: minimum distance that must be free (x and y)
+        :return: list of positions that must be left free
+        """
+
+        safearea = list()
+
+        for bob in bobs:
+
+            bobx = bob.getPosition().getX()
+            boby = bob.getPosition().getY()
+
+            startx = bobx - mindist
+            starty = boby - mindist
+            endx = bobx + mindist
+            endy = boby + mindist
+
+            if startx <= 0:
+                startx = 1
+            if starty <= 0:
+                starty = 1
+            if endx > dim.getWidth():
+                endx = dim.getWidth()
+            if endy > dim.getHeight():
+                endy = dim.getHeight()
+
+            for x in range(startx,endx):
+                for y in range(starty, endy):
+                    if not ((x % 2 == 0) and (y % 2 == 0)):  # if the position is not (even,even) resume
+                        safearea.append(Position(x,y).toString())
+
+        return safearea
+
+
+
+
+
+
+
 
 
     def disposePowerUps(self, powerups: list, dim: Dimensions) -> list:
