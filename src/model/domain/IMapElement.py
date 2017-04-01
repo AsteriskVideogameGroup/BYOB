@@ -1,8 +1,8 @@
 import abc
-from src.utility.Position import *
+from src.utility import Position
+
 
 class IMapElement(metaclass=abc.ABCMeta):
-
     @abc.abstractmethod
     def setPosition(self, position: Position):
         """

@@ -1,7 +1,6 @@
 from typing import List
-from src.model.domain.ClientInfos import ClientInfos
-from src.model.factories.GameModeFactory import GameModeFactory
-from src.model.domain.Room import Room
+from src.model.domain import ClientInfos, Room
+from src.model.factories import GameModeFactory
 
 
 class MatchMaker:
@@ -26,7 +25,7 @@ class MatchMaker:
         :param gamemode: String ID of the GameMode
         :return: The selected matchmaker for the GameMode
         """
-        return cls.__new__(cls, gamemode)
+        return cls.__new__(cls(), gamemode)
 
     def pushPlayer(self, client: ClientInfos, isranked: bool):
         """

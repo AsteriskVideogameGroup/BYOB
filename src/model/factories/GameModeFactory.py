@@ -1,13 +1,9 @@
 from src.model.domain.gamemode import *
-from src.utility.GlobalSettings import GlobalSettings
+from src.utility import MetaSingleton
+from src.utility import GlobalSettings
 
 
-class GameModeFactory:
-
-    def __new__(cls, *args, **kwargs) -> 'GameModeFactory':
-        if not hasattr(cls, '_instance'):
-            cls._instance = super().__new__(cls)
-        return cls._instance
+class GameModeFactory(metaclass=MetaSingleton):
 
     def getGameMode(self, modeid: str) -> IGameMode:
         """

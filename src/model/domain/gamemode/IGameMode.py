@@ -1,6 +1,6 @@
 import abc
-from src.model.factories.IEnvironmentObjectFactory import IEnvironmentObjectFactory
-from src.utility.Dimensions import Dimensions
+from src.model.factories import IEnvironmentObjectFactory
+from src.utility import Dimensions
 
 
 class IGameMode(metaclass=abc.ABCMeta):

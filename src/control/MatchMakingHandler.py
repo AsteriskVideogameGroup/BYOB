@@ -1,17 +1,8 @@
-from src.model.domain.ClientInfos import ClientInfos
-from src.model.domain.MatchMaker import MatchMaker
+from src.model.domain import ClientInfos, MatchMaker
+from src.utility import MetaSingleton
 
 
-class MatchMakingHandler:
-
-    def __new__(cls, *args, **kwargs) -> 'MatchMakingHandler':
-        if not hasattr(cls, '_instance'):
-            cls._instance = super().__new__(cls)
-        return cls._instance
-
-    @classmethod
-    def getInstance(cls) -> 'MatchMakingHandler':
-        return cls.__new__(cls)
+class MatchMakingHandler(metaclass=MetaSingleton):
 
     def makeNewGame(self, client: ClientInfos, modeid: str = 'nomode', isranked: bool = False):
         """

@@ -1,8 +1,9 @@
-from src.model.domain.Game import *
 from src.model.domain.bob import BoBBuilder
-from src.model.domain.Game import *
+from src.model.domain import Game
+from src.utility import MetaSingleton
 
-class GameHandler:
+
+class GameHandler(metaclass=MetaSingleton):
 
     _currentgame = None
     _started = None
