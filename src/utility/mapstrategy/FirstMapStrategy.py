@@ -1,4 +1,4 @@
-from src.utility.mapstrategy import IMapStrategy
+from src.utility.mapstrategy.IMapStrategy import IMapStrategy
 from src.utility import Dimensions, Position
 from src.model.domain import IMapElement
 import copy
