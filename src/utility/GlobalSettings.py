@@ -1,7 +1,8 @@
 import json
+from src.utility import MetaSingleton
 
 
-class GlobalSettings:
+class GlobalSettings(metaclass=MetaSingleton):
     def __new__(cls, *args, **kwargs) -> 'MatchMakingHandler':
         if not hasattr(cls, '_instance'):
             cls._instance = super().__new__(cls)
