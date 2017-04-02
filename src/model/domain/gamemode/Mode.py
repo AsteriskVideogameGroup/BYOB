@@ -20,7 +20,7 @@ class Mode:
         return self._mapstrategy
 
     def getMapDimensions(self) -> Dimensions:
-        """
+        """ 
         :return: map's dimensions for a given mode
         """
         return self._dimensions
