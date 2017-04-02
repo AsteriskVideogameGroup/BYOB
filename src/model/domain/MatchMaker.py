@@ -66,7 +66,3 @@ class MatchMaker:
 
             for client in arrclients:  # update all client observers
                 client.update(ghandle)
-
-
-        else:
-            print("Ho cercato di fare update ")  # TODO rimuovere
