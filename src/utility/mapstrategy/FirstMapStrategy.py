@@ -33,6 +33,11 @@ class FirstMapStrategy(IMapStrategy, metaclass=MetaSingleton):
         return undestructibleelementslist
 
     def disposeBoBs(self, bobs: list, dim: Dimensions):
+        """
+        Disposal algorithm for BoBs (balanced number of BoBs for each side: longer side => more BoBs)
+        :param bobs: BoBs that must be placed
+        :param dim: Map dimensions
+        """
 
         bobtoplace = len(bobs)
 
@@ -139,8 +144,6 @@ class FirstMapStrategy(IMapStrategy, metaclass=MetaSingleton):
         return remainingbobs, bobit
 
     def disposeDestrObstacles(self, dstrobstacles: list, dim: Dimensions, bobs: list) -> list:
-        # TODO: test
-
         """
         Dispose undestructible obstacles inside a map
 
