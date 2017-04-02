@@ -25,9 +25,9 @@ class FirstMapStrategy(IMapStrategy):
 
         undestructibleelementslist = list()
 
-        for i in range(1, height):
+        for i in range(1, height+1):
             if i%2 == 0:
-                for j in range(1, width):
+                for j in range(1, width+1):
                     if j%2 == 0:
                         newundstr = copy.deepcopy(random.choice(undstrobstacles))
                         newundstr.setPosition(Position(i, j))
@@ -85,12 +85,12 @@ class FirstMapStrategy(IMapStrategy):
         else:
             delta = math.floor(height / math.floor(remainingbobs / remainingsides))
         if negative:
-            for i in range(height, 1, -delta):
+            for i in range(height, 1+1, -delta):
                 bobslist[bobit].setPosition(Position(x, i))
                 remainingbobs = remainingbobs - 1
                 bobit = bobit + 1
         else:
-            for i in range(1, height, delta):
+            for i in range(1, height+1, delta):
                 bobslist[bobit].setPosition(Position(x, i))
                 remainingbobs = remainingbobs - 1
                 bobit = bobit + 1
@@ -104,12 +104,12 @@ class FirstMapStrategy(IMapStrategy):
         else:
             delta = math.floor(width / math.floor(remainingbobs / remainingsides))
         if negative:
-            for i in range(width, 1, -delta):
+            for i in range(width, 1+1, -delta):
                 bobslist[bobit].setPosition(Position(i, y))
                 remainingbobs = remainingbobs - 1
                 bobit = bobit + 1
         else:
-            for i in range(1, width, delta):
+            for i in range(1, width+1, delta):
                 bobslist[bobit].setPosition(Position(i, y))
                 remainingbobs = remainingbobs - 1
                 bobit = bobit + 1
@@ -129,14 +129,14 @@ class FirstMapStrategy(IMapStrategy):
         """
 
         MINDIST = 1                         # Minimum distance from bobs
-        PLACINGPROBABILITY = 0.33           # Probability of placing obstacle in a given position
+        PLACINGPROBABILITY = 0.45           # Probability of placing obstacle in a given position
 
         destructibleelementslist = list()
 
-        safearea = self._selectSafeArea(dim,bobs,MINDIST)
+        safearea = self._selectSafeArea(dim, bobs, MINDIST)
 
-        for y in range(1,dim.getHeight()):
-            for x in range(1,dim.getWidth()):
+        for y in range(1,dim.getHeight()+1):
+            for x in range(1,dim.getWidth()+1):
                 if not ((x % 2 == 0) and (y % 2 == 0)): # if the position is not (even,even) resume
 
                     newposition = Position(x,y)
@@ -171,17 +171,17 @@ class FirstMapStrategy(IMapStrategy):
             endx = bobx + mindist
             endy = boby + mindist
 
-            if startx <= 0:
+            if startx < 1:
                 startx = 1
-            if starty <= 0:
+            if starty < 1:
                 starty = 1
             if endx > dim.getWidth():
                 endx = dim.getWidth()
             if endy > dim.getHeight():
                 endy = dim.getHeight()
 
-            for x in range(startx,endx):
-                for y in range(starty, endy):
+            for x in range(startx, endx+1):
+                for y in range(starty, endy+1):
                     if not ((x % 2 == 0) and (y % 2 == 0)):  # if the position is not (even,even) resume
                         safearea.append(Position(x,y).toString())
 

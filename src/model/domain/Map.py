@@ -21,7 +21,8 @@ class Map:
     _occupiedpositions = None
 
     #TODO RIMUOVERE QUESTO COSTRUTTORE, UTILIZZATO SOLO PER TESTING
-    #def __init__(self):
+    #def __init__(self, strategy: IMapStrategy):
+    #    self._strategy = strategy
     #    self._occupiedpositions = {}
 
     def __init__(self, envobjfactory: IEnvironmentObjectFactory, strategy: IMapStrategy):
@@ -68,7 +69,8 @@ class Map:
 
         samplesDestrObstacle = self._envobjfactory.getDestructibleObstacles()
         samplesUndestrObstacle = self._envobjfactory.getUndestructibleOstacles()
-        self._placeablepowups = self._envobjfactory.getPowerUps()
+
+        #self._placeablepowups = self._envobjfactory.getPowerUps()
 
         undstrarraytoset = self._strategy.disposeUndestrObstacles(samplesUndestrObstacle, self._dimensions)
         self.setUndstrObstacleArray(undstrarraytoset)
