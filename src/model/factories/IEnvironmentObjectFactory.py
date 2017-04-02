@@ -1,14 +1,8 @@
 import abc
-from src.model.domain.obstacle.DestructibleObstacle import *
-from src.model.domain.obstacle.UndestructibleObstacle import *
-from src.model.domain.powerup.IPowerUp import *
+from src.utility import MetaAbstractSingleton
 
 
-class IEnvironmentObjectFactory(metaclass=abc.ABCMeta):
-
-    @abc.abstractclassmethod
-    def getInstance(cls):
-        pass
+class IEnvironmentObjectFactory(metaclass=MetaAbstractSingleton):
 
     @abc.abstractmethod
     def getDestructibleObstacles(self) -> list:
