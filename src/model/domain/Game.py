@@ -1,5 +1,5 @@
 from src.model.domain import Map, Room
-from src.model.domain.bob import BoB
+from src.model.domain.BoB import BoB
 from src.model.domain.gamemode import Mode
 from src.model.factories import StrategyFactory
 import time
