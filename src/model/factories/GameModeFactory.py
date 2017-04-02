@@ -1,7 +1,5 @@
-# from src.model.domain.gamemode import *
 from src.model.domain.gamemode import Mode
 from src.utility import MetaSingleton, Dimensions
-# from src.utility import GlobalSettings
 
 
 class GameModeFactory(metaclass=MetaSingleton):
@@ -12,14 +10,12 @@ class GameModeFactory(metaclass=MetaSingleton):
         :param modeid: String ID of the GameMode
         """
 
-        # MODES = 'modes'  # name of the mode setting
-
-        # modelist = GlobalSettings().getSetting(MODES)  # list of all available modes TODO eliminare perché non serve
+        #  MODES = 'modes'  # name of the mode setting modelist = GlobalSettings().getSetting(MODES)  # list of all
+        #  available modes TODO eliminare perché non serve
+        #  newmodeclass = globals()[modelist.get(modeid)] TODO rimuovere
+        #  instantiare the new modality (remember that it's simgleton) TODO rimuovere
 
         # TODO dobbiamo prendere i dati da un database
         newmode = Mode(Dimensions(5, 7), None, 4, 3, 300)
-
-
-        # newmodeclass = globals()[modelist.get(modeid)]  # instantiare the new modality (remember that it's simgleton) TODO rimuovere
 
         return newmode
