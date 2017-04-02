@@ -1,4 +1,5 @@
-from src.model.domain.obstacle.IObstacle import *
+from src.model.domain.obstacle import IObstacle
+from src.utility import Position
 
 
 class UndestructibleObstacle(IObstacle):

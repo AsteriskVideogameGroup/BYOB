@@ -1,5 +1,5 @@
 import abc
-from src.model.domain.IMapElement import *
+from src.model.domain import IMapElement
 
 
 class IObstacle(IMapElement, metaclass=abc.ABCMeta):
