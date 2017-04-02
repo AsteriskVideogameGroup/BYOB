@@ -6,7 +6,7 @@ import random
 import math
 
 
-class FirstMapStrategy(IMapStrategy, metaclass=MetaSingleton):
+class FirstMapStrategy(IMapStrategy):
 
     def disposeUndestrObstacles(self, undstrobstacles: list, dim: Dimensions) -> list:
         """

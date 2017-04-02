@@ -1,8 +1,8 @@
 import abc
-from src.utility import Dimensions
+from src.utility import Dimensions, MetaAbstractSingleton
 
 
-class IMapStrategy(metaclass=abc.ABCMeta):
+class IMapStrategy(metaclass=MetaAbstractSingleton):
 
     @abc.abstractmethod
     def disposeDestrObstacles(self, dstrobstacles: list, dim: Dimensions, bobs: list) -> list:
