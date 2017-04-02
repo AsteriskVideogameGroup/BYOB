@@ -1,15 +1,12 @@
 from .IMapStrategy import IMapStrategy
-from src.utility import Dimensions, Position
+from src.utility import Dimensions, Position, MetaSingleton
 from src.model.domain import IMapElement
 import copy
 import random
 import math
 
 
-class FirstMapStrategy(IMapStrategy):
-
-    def __init__(self):
-        pass
+class FirstMapStrategy(IMapStrategy, metaclass=MetaSingleton):
 
     def disposeUndestrObstacles(self, undstrobstacles: list, dim: Dimensions) -> list:
         """
@@ -80,6 +77,18 @@ class FirstMapStrategy(IMapStrategy):
 
     def _disposeBoBsOnHeight(self, x: int, negative: bool, remainingsides: int, remainingbobs: int, bobslist: list,
                              bobit: int, height: int, longside: bool):
+        """
+        Subroutine for the disposal of BoBs in a column of the map
+        :param x: number of the column
+        :param negative: true, if the disposal starts from the end of the column, or false, if the disposal starts from the beginning of the column
+        :param remainingsides: number of other columns or rows where bobs have to be disposed
+        :param remainingbobs: number of remaining disposing bobs
+        :param bobslist: list of disposing bobs
+        :param bobit: index of bobslist from which must be dispose the bobs
+        :param height: height of the column
+        :param longside: true, if the columns are longer than rows, or false, otherwise
+        :return: the number of remaining disposing bobs and the index of bobs array from which resume the disposing
+        """
         if longside:
             delta = math.floor(height / math.ceil(remainingbobs / remainingsides))
         else:
@@ -99,6 +108,19 @@ class FirstMapStrategy(IMapStrategy):
 
     def _disposeBoBsOnWidth(self, y: int, negative: bool, remainingsides: int, remainingbobs: int, bobslist: list,
                             bobit: int, width: int, longside: bool):
+        """
+        Subroutine for the disposal of BoBs in a row of the map
+        :param y: number of the row
+        :param negative: true, if the disposal starts from the end of the row, or false, if the disposal starts from the beginning of the row
+        :param remainingsides: number of other columns or rows where bobs have to be disposed
+        :param remainingbobs: number of remaining disposing bobs
+        :param bobslist: list of disposing bobs
+        :param bobit: index of bobslist from which must be dispose the bobs
+        :param width: width of the row
+        :param longside: true, if the rows are longer than columns, or false, otherwise
+        :return: the number of remaining disposing bobs and the index of bobs array from which resume the disposing
+        """
+
         if longside:
             delta = math.floor(width / math.ceil(remainingbobs / remainingsides))
         else:

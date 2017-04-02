@@ -1,5 +1,8 @@
 {
   "modes" : {
     "classic": "ClassicMode"
+  },
+  "mapstrategy": {
+    "classic": "FirstMapStrategy"
   }
 }
