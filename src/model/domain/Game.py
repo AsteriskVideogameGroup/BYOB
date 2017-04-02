@@ -1,6 +1,6 @@
 from src.model.domain import Map, Room
 from src.model.domain.bob import BoB
-from src.model.domain.gamemode import IGameMode
+from src.model.domain.gamemode import Mode
 from src.model.factories import StrategyFactory
 import time
 
@@ -12,7 +12,7 @@ class Game:
     _bobarray = None
     _gamemap = None
 
-    def __init__(self, playerroom: Room, gamemode: IGameMode):
+    def __init__(self, playerroom: Room, gamemode: Mode):
         """
         :param playerroom: virtual room for the players of the game
         :param gamemode: game mode of the game

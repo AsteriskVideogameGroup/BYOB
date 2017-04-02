@@ -1,8 +1,12 @@
 from src.model.domain.gamemode import Mode
-from src.utility import MetaSingleton, Dimensions
+from src.model.factories import IEnvironmentObjectFactory
+from src.utility import MetaSingleton, Dimensions, GlobalSettings
+from src.utility.mapstrategy import *
 
 
 class GameModeFactory(metaclass=MetaSingleton):
+
+    MAPSTRATEGY = 'mapstrategy'  # name of the setting that contains all mapstrategy bindings
 
     def getGameMode(self, modeid: str) -> Mode:
         """
@@ -10,12 +14,19 @@ class GameModeFactory(metaclass=MetaSingleton):
         :param modeid: String ID of the GameMode
         """
 
-        #  MODES = 'modes'  # name of the mode setting modelist = GlobalSettings().getSetting(MODES)  # list of all
-        #  available modes TODO eliminare perché non serve
-        #  newmodeclass = globals()[modelist.get(modeid)] TODO rimuovere
-        #  instantiare the new modality (remember that it's simgleton) TODO rimuovere
+        positionalg = self._positionAlgBind(modeid)
+        objfactory = self._objectFactoryBind(modeid)
 
         # TODO dobbiamo prendere i dati da un database
-        newmode = Mode(Dimensions(5, 7), None, 4, 3, 300)
+        newmode = Mode(modeid, Dimensions(15, 15), objfactory, positionalg, 4, 3, 300)
 
         return newmode
+
+    def _positionAlgBind(self, modeid: str) -> IMapStrategy:
+        mapstrategylist = GlobalSettings().getSetting(GameModeFactory.MAPSTRATEGY)
+        # class name of the requested algorithm
+
+        return globals()[mapstrategylist.get(modeid)]  # instantiation
+
+    def _objectFactoryBind(self, modeid: str) -> IEnvironmentObjectFactory: # TODO completa implementazione
+        pass

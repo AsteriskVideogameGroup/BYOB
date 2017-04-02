@@ -1,20 +1,17 @@
 from src.model.factories import IEnvironmentObjectFactory
-from src.utility import Dimensions, GlobalSettings
+from src.utility import Dimensions
 from src.utility.mapstrategy import IMapStrategy
 
 
 class Mode:
-    def __init__(self, dimensions: Dimensions, envobjf: IEnvironmentObjectFactory, maxplayers: int, invtime: int, duration: int, name: str):
+    def __init__(self, name: str, dimensions: Dimensions, envobjf: IEnvironmentObjectFactory, positionalgorithm: IMapStrategy, maxplayers: int, invtime: int, duration: int):
         self._dimensions = dimensions
         self._environmentobjectfactory = envobjf
         self._maxplayers = maxplayers
         self._invulnerabilitytime = invtime
         self._duration = duration
         self._name = name
-
-        MAPSTRATEGY = 'mapstrategy'
-        mapstrategylist = GlobalSettings().getSetting(MAPSTRATEGY)
-        self._mapstrategy = globals()[mapstrategylist.get(name)]
+        self._mapstrategy = positionalgorithm
 
     def getMapStrategy(self) -> IMapStrategy:
         """
