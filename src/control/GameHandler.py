@@ -25,5 +25,5 @@ class GameHandler:
 
     def chooseBoB(self, owner: Player, bobnameid: str = 'default'):
         """ Choose BoB before game start """
-        self._newbob = BoBBuilder.createBoB(owner, bobnameid)
-        Game.addBoB(self._newbob)
+        self._newbob = BoBBuilder().createBoB(bobnameid, owner)
+        self._currentgame.addBoB(self._newbob)
