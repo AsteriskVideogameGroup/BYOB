@@ -5,13 +5,12 @@ from src.model.domain.Player import Player
 
 class GameHandler:
 
-    _currentgame = None
-    _started = None
-    _newbob = None
+    ########## ATTRIBUTES DEFINITION ##########
+    # _currentgame : Game
+    # _started : Bool
 
     def __init__(self, newgame: Game):
         """
-
         :param newgame: Game object to handle
         """
         self._currentgame = newgame
@@ -24,6 +23,10 @@ class GameHandler:
         self._started = self._currentgame.startGame()
 
     def chooseBoB(self, owner: Player, bobnameid: str = 'default'):
-        """ Choose BoB before game start """
-        self._newbob = BoBBuilder().createBoB(bobnameid, owner)
-        self._currentgame.addBoB(self._newbob)
+        """
+        Let the player choose his BoB
+        :param owner: Player who choose the BoB
+        :param bobnameid: Name id of the chosen BoB
+        """
+        newbob = BoBBuilder().createBoB(bobnameid, owner)
+        self._currentgame.addBoB(newbob)

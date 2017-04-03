@@ -4,11 +4,19 @@ from src.utility import Position
 
 class DestructibleObstacle(IObstacle):
 
-    _position = None
+    ########## ATTRIBUTES DEFINITION ##########
+    # _position : Position
 
     def getPosition(self) -> Position:
+        """
+        :return: the position of the obstacle
+        """
         return self._position
 
     def setPosition(self, position: Position):
+        """
+        Set the position of the obstacle
+        :param position: the position to set
+        """
         self._position = position
 

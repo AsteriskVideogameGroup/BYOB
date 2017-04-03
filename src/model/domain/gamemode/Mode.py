@@ -4,6 +4,16 @@ from src.utility.mapstrategy import IMapStrategy
 
 
 class Mode:
+
+    ########## ATTRIBUTES DEFINITION ##########
+    # _dimensions : Dimensions
+    # _environmentobjectfactory : IEnvironmentObjectFactory
+    # _maxplayers : Int
+    # _invulnerabilitytime : Int
+    # _duration : Int
+    # _name : String
+    # _mapstrategy: IMapStrategy
+
     def __init__(self, name: str, dimensions: Dimensions, envobjf: IEnvironmentObjectFactory, positionalgorithm: IMapStrategy, maxplayers: int, invtime: int, duration: int):
         self._dimensions = dimensions
         self._environmentobjectfactory = envobjf

@@ -1,7 +1,9 @@
 class Position:
 
-    _x = None
-    _y = None
+    ########## ATTRIBUTES DEFINITION ##########
+
+    # _x : float
+    # _y : float
 
     def __init__(self, x: float, y: float):
         self._x = x
@@ -20,4 +22,7 @@ class Position:
         return self._y
 
     def toString(self):
+        """
+        :return: the position as: (_x,_y)
+        """
         return "("+str(self._x)+","+str(self._y)+")"

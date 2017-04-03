@@ -7,10 +7,12 @@ import time
 
 class Game:
 
-    _gameroom = None
-    _currentmode = None
-    _bobarray = None
-    _gamemap = None
+    ########## ATTRIBUTES DEFINITION ##########
+    # _gameroom : Room
+    # _currentmode : Mode
+    # _bobarray : list (of BoBs)
+    # _gamemap : Map
+    # _endgametime : time.Time()
 
     def __init__(self, playerroom: Room, gamemode: Mode):
         """
@@ -23,8 +25,8 @@ class Game:
 
     def addBoB(self, newbob):
         """
-        Add a bob to the game
-        :param newbob: bob that must be added to the game
+        Add a BoB to the game
+        :param newbob: BoB that must be added to the game
         """
         self._bobarray.append(newbob)
 
@@ -52,12 +54,11 @@ class Game:
     def startGame(self) -> bool:
         """
         Start the game computing the end time.
-
         :return: True signaling the start to gamehandler
         """
 
         duration = self._currentmode.getDuration()
-        self.endgametime = time.time() + duration*60
+        self._endgametime = time.time() + duration*60
         return True
 
 

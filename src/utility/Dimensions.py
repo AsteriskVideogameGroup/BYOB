@@ -1,7 +1,8 @@
 class Dimensions:
 
-    _width = None
-    _height = None
+    ########## ATTRIBUTES DEFINITION ##########
+    # _width : int
+    # _height : int
 
     def __init__(self, width: int, height: int):
         self._width = width

@@ -3,7 +3,9 @@ from src.model.domain import Player
 
 class Room:
 
-    _arrplayers = None
+    ########## ATTRIBUTES DEFINITION ##########
+
+    # _arrplayers : list (of Player)
 
     def __init__(self):
         self._arrplayers = list() # list of the gamers

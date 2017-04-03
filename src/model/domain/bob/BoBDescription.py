@@ -2,7 +2,8 @@ from src.utility.MetaSingleton import MetaSingleton
 
 class BoBDescription(metaclass=MetaSingleton):
 
-    _descr = None
+    ########## ATTRIBUTES DEFINITION ##########
+    # _descr:
 
     def getDescription(self):
         return self._descr

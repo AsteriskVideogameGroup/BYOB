@@ -6,19 +6,23 @@ from src.model.domain import IMapElement
 
 class Map:
 
-    _envobjfactory = None
-    _invtime = None
-    _dimensions = None
-    _poweruparray = None
-    _strategy = None
-    _placablepowups = None
 
-    _bobarray = None
-    _undstrobstaclearray = None
-    _dstrobstaclearray = None
+
+    ########## ATTRIBUTES DEFINITION ##########
+
+    # _envobjfactory : IEnvironmentObjectFactory
+    # _invtime : int
+    # _dimensions : Dimensions
+    # _poweruparray : list (of IPowerUP)
+    # _strategy : IMapStrategy
+    # _placablepowups : list (of IPowerUp)
+
+    # _bobarray : list (of BoB)
+    # _undstrobstaclearray : list (of UndestructibleArray)
+    # _dstrobstaclearray :  list (of DestructibleArray)
 
     # Dictionary that records the occupied positions (structure = (position,element) )
-    _occupiedpositions = None
+    # _occupiedpositions : dict
 
     #TODO RIMUOVERE QUESTO COSTRUTTORE, UTILIZZATO SOLO PER TESTING
     #def __init__(self, strategy: IMapStrategy):
@@ -119,6 +123,10 @@ class Map:
         self._occupyElementsPositions(dstrarray)
 
     def _occupyElementsPositions(self, imapelements: list):
+        """
+        Occupy the positions of a given IMapElements list
+        :param imapelements: list of IMapElements that must occupy a position
+        """
         for ele in imapelements:
             self._occupyPosition(ele)
 

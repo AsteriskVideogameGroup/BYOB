@@ -4,6 +4,11 @@ from src.utility import MetaSingleton
 
 class GlobalSettings(metaclass=MetaSingleton):
 
+    ########## ATTRIBUTES DEFINITION ##########
+
+    # _settingpath : string
+    # _settings : dict
+
     def __init__(self):
         self._settingpath = "../settings/programsettings.json"
         self._settings = dict()
