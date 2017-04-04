@@ -1,4 +1,4 @@
-from src.model.factories import IEnvironmentObjectFactory
+from src.model.domain.environmentobject.factory import IEnvironmentObjectFactory
 from src.utility import Dimensions
 from src.utility.mapstrategy import IMapStrategy
 

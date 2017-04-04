@@ -1,8 +1,7 @@
-from src.model.domain import Map, Room
-from src.model.domain.BoB import BoB
-from src.model.domain.gamemode import Mode
-from src.model.factories import StrategyFactory
 import time
+
+from src.model.domain import Map, Room
+from src.model.domain.environmentgamemode.gamemode import Mode
 
 
 class Game:
@@ -40,6 +39,23 @@ class Game:
         invtime = self._currentmode.getInvulnerabilityTime()
 
         algo = StrategyFactory.getInstance().getMapStrategy()
+
+        # TODO StrategyFactory cancellata!!!
+        # from src.utility import MetaSingleton, GlobalSettings
+        #     # class StrategyFactory(metaclass=MetaSingleton):
+        #     # TODO CANCELLARE LA CLASSE, LA LETTURA DELLA MAP STRATEGY è nella MODALITÀ
+        #         #     def getMapStrategy(self):
+        #         """
+        #         Takes, from configuration, the map strategy that must be used
+        #         :return: the map strategy that must be used
+        #         """
+        #         MAPSTRATEGY = 'mapstrategy'
+        #         mapstrategyname = GlobalSettings().getSetting(MAPSTRATEGY)
+        #         mapstrategy = globals()[mapstrategyname]
+        #         self._mapstrategy = mapstrategy
+        #         return self._mapstrategy
+
+
         # TODO: in visual paradigm dovremmo aggiornare la questione della strategy
         # sembra legittimo mettere come parametri per il costruttore la factory
         # degli elementi e la strategia di disposizione

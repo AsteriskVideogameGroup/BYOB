@@ -1,4 +1,4 @@
-from src.model.domain.obstacle import DestructibleObstacle, UndestructibleObstacle
+from src.model.domain.environmentobject.obstacle import DestructibleObstacle, UndestructibleObstacle
 from src.utility import MetaSingleton
 
 

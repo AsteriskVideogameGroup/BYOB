@@ -1,5 +1,5 @@
-from src.model.domain.gamemode import Mode
-from src.model.factories import IEnvironmentObjectFactory
+from src.model.domain.environmentgamemode.gamemode import Mode
+from src.model.domain.environmentobject.factory import IEnvironmentObjectFactory
 from src.utility import MetaSingleton, Dimensions, GlobalSettings
 from src.utility.mapstrategy import *
 

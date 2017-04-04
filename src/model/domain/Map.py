@@ -1,7 +1,7 @@
-from src.model.factories import IEnvironmentObjectFactory
+from src.model.domain import IMapElement
+from src.model.domain.environmentobject.factory import IEnvironmentObjectFactory
 from src.utility import Dimensions, Position
 from src.utility.mapstrategy import IMapStrategy
-from src.model.domain import IMapElement
 
 
 class Map:

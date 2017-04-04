@@ -1,8 +1,8 @@
-from src.model.domain.obstacle import IObstacle
+from src.model.domain.environmentobject.obstacle import IObstacle
 from src.utility import Position
 
 
-class DestructibleObstacle(IObstacle):
+class UndestructibleObstacle(IObstacle):
 
     ########## ATTRIBUTES DEFINITION ##########
     # _position : Position

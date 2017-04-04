@@ -1,3 +1,0 @@
-from .GameModeFactory import GameModeFactory
-from .IEnvironmentObjectFactory import IEnvironmentObjectFactory
-from .StrategyFactory import StrategyFactory
