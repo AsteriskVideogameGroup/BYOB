@@ -9,6 +9,17 @@ class Position:
         self._x = x
         self._y = y
 
+    def __hash__(self):
+        return hash((self._x, self._y))
+
+    def __eq__(self, other):
+        return (self._x, self._y) == (other._x, other._y)
+
+    def __ne__(self, other):
+        # Not strictly necessary, but to avoid having both x==y and x!=y
+        # True at the same time
+        return not (self == other)
+
     def setX(self, x: float):
         self._x = x
 

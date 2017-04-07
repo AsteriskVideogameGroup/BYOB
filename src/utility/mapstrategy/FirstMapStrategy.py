@@ -10,7 +10,29 @@ class FirstMapStrategy(IMapStrategy):
 
     def disposeUndestrObstacles(self, undstrobstacles: list, dim: Dimensions) -> list:
         """
-        Dispose undestructible obstacles inside a map
+        Dispose undestructible obstacles inside a map in (2k,2k) positions
+        
+        +---+---+---+---+---+---+---+---+---+
+        |   |   |   |   |   |   |   |   |   |
+        +---+---+---+---+---+---+---+---+---+
+        |   | X |   | X |   | X |   | X |   |
+        +---+---+---+---+---+---+---+---+---+
+        |   |   |   |   |   |   |   |   |   |
+        +---+---+---+---+---+---+---+---+---+
+        |   | X |   | X |   | X |   | X |   |
+        +---+---+---+---+---+---+---+---+---+
+        |   |   |   |   |   |   |   |   |   |
+        +---+---+---+---+---+---+---+---+---+
+        |   | X |   | X |   | X |   | X |   |
+        +---+---+---+---+---+---+---+---+---+
+        |   |   |   |   |   |   |   |   |   |
+        +---+---+---+---+---+---+---+---+---+
+        |   | X |   | X |   | X |   | X |   |
+        +---+---+---+---+---+---+---+---+---+
+        |   |   |   |   |   |   |   |   |   |
+        +---+---+---+---+---+---+---+---+---+
+        
+        X = undstrobstacles placed        
 
         :param undstrobstacles: list of different sample of undestructible obstacles that must be placed
         :param dim: dimensions of the map to be filled
@@ -35,6 +57,23 @@ class FirstMapStrategy(IMapStrategy):
     def disposeBoBs(self, bobs: list, dim: Dimensions):
         """
         Disposal algorithm for BoBs (balanced number of BoBs for each side: longer side => more BoBs)
+        
+        examples: 6 BoBs on 7x5 map
+        
+         +---+---+---+---+---+---+---+
+         | X |   |   | X |   |   | X |
+         +---+---+---+---+---+---+---+
+         |   |   |   |   |   |   |   |
+         +---+---+---+---+---+---+---+
+         |   |   |   |   |   |   |   |
+         +---+---+---+---+---+---+---+
+         |   |   |   |   |   |   |   |
+         +---+---+---+---+---+---+---+
+         | X |   |   | X |   |   | X |
+         +---+---+---+---+---+---+---+
+        
+         X = BoB placed 
+        
         :param bobs: BoBs that must be placed
         :param dim: Map dimensions
         """
@@ -145,7 +184,31 @@ class FirstMapStrategy(IMapStrategy):
 
     def disposeDestrObstacles(self, dstrobstacles: list, dim: Dimensions, bobs: list) -> list:
         """
-        Dispose undestructible obstacles inside a map
+        Randomly dispose destructible obstacles inside a map (caring about a safe zone near BoBs)
+        
+        example: 4 BoBs on 7x7 map. (safe zone of 1 tile)
+        
+        +---+---+---+---+---+---+---+
+        | $ | + | X |   |   | + | $ |
+        +---+---+---+---+---+---+---+
+        | + | # | X | # |   | # | + |
+        +---+---+---+---+---+---+---+
+        |   |   |   | X |   | X |   |
+        +---+---+---+---+---+---+---+
+        |   | # | X | # |   | # |   |
+        +---+---+---+---+---+---+---+
+        |   | X | X | X |   |   |   |
+        +---+---+---+---+---+---+---+
+        | + | # | X | # |   | # | + |
+        +---+---+---+---+---+---+---+
+        | $ | + |   |   |   | + | $ |
+        +---+---+---+---+---+---+---+
+        
+        # = Undestructible obstacles
+        X = Destructible obstacles
+        + = Safe zone
+        $ = BoB
+        
 
         :param undstrobstacles: list of different samples of destructible obstacles that must be placed
         :param dim: dimensions of the map to be filled
@@ -165,7 +228,7 @@ class FirstMapStrategy(IMapStrategy):
                 if not ((x % 2 == 0) and (y % 2 == 0)): # if the position is not (even,even) resume
 
                     newposition = Position(x,y)
-                    if not (newposition.toString() in safearea): # if the position is not in the safearea
+                    if not (newposition() in safearea): # if the position is not in the safearea
                         if random.random() < PLACINGPROBABILITY:
 
                             newobstacle = copy.deepcopy(random.choice(dstrobstacles))
@@ -208,10 +271,32 @@ class FirstMapStrategy(IMapStrategy):
             for x in range(startx, endx+1):
                 for y in range(starty, endy+1):
                     if not ((x % 2 == 0) and (y % 2 == 0)):  # if the position is not (even,even) resume
-                        safearea.append(Position(x,y).toString())
+                        safearea.append(Position(x,y))
 
         return safearea
 
-    def disposePowerUps(self, powerups: list, dim: Dimensions) -> list:
-        #TODO
-        pass
+    def disposePowerUps(self, powerups: list, dim: Dimensions, occpositions: dict) -> list:
+        """
+        Randomly place a list of power-ups on the map (in an unoccupied position)
+        :param powerups: list of power-ups to place
+        :param dim: dimension of the map where to place the power-ups
+        :param occpositions: dictionary with Position as keys to sign the occupied positions
+        :return: list of placed power-ups
+        """
+
+        poweruplist = list()
+        for pu in powerups:
+            newy = random.randrange(1, dim.getHeight()+1)
+            newx = random.randrange(1, dim.getWidth()+1)
+            newpos = Position(newx, newy)
+            ## TODO: Potrebbe dare problemi quando si andrà a rendere fluido il movimento dei BoB
+            ## TODO: Essi potranno trovarsi nel punto di spawn del power-up se la loro posizione è float e non int
+            while (newpos in occpositions):
+                newy = random.randrange(1, dim.getHeight() + 1)
+                newx = random.randrange(1, dim.getWidth() + 1)
+                newpos = Position(newx, newy)
+
+            pu.setPosition(newpos)
+            poweruplist.append(pu)
+
+        return poweruplist
