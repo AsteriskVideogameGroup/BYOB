@@ -1,2 +1,1 @@
-from .MatchMakingHandler import MatchMakingHandler
-from .GameHandler import GameHandler
+from src.control.gamemanage.GameHandler import GameHandler
