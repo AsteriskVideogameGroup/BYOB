@@ -2,11 +2,12 @@ import copy
 import math
 import random
 
-from src.utility import Dimensions, Position
-from .IMapStrategy import IMapStrategy
-
 
 #TODO GIOACCHINO: È SINGLETON?
+from src.utility.geometrictools import Position, Dimensions
+from src.utility.mapstrategy import IMapStrategy
+
+
 class FirstMapStrategy(IMapStrategy):
     def disposeUndestrObstacles(self, undstrobstacles: list, dim: Dimensions) -> list:
         """

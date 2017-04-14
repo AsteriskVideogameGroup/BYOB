@@ -1,5 +1,6 @@
 import abc
-from src.utility import Position
+
+from src.utility.geometrictools import Position
 
 
 class IMapElement(metaclass=abc.ABCMeta):

@@ -1,10 +1,9 @@
-from src.factories import GameModeFactory
 from typing import List
 
-from src.control.gamemanage.GameHandler import GameHandler  # TODO correggere
-from src.domain import ClientInfos
-from src.domain.gamemanage.player import Room
-from .Game import Game
+from src.control import GameHandler
+from src.domain.gamemanage.gameessentials import Game
+from src.domain.gamemanage.gamemode import GameModeFactory
+from src.domain.gamemanage.player import ClientInfos, Room
 
 
 class MatchMaker:

@@ -1,5 +1,5 @@
-from src.factories import IEnvironmentObjectFactory
-from src.utility import Dimensions
+from src.domain.gamemanage.environmentobjects import IEnvironmentObjectFactory
+from src.utility.geometrictools import Dimensions
 from src.utility.mapstrategy import IMapStrategy
 
 

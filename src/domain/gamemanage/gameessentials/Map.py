@@ -1,6 +1,6 @@
-from src.domain import IMapElement
-from src.factories import IEnvironmentObjectFactory
-from src.utility import Dimensions, Position
+from src.domain.gamemanage.environmentobjects import IEnvironmentObjectFactory
+from src.domain.gamemanage.gameessentials import IMapElement
+from src.utility.geometrictools import Dimensions, Position
 from src.utility.mapstrategy import IMapStrategy
 
 

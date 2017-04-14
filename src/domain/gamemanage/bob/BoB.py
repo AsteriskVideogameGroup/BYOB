@@ -1,8 +1,7 @@
-from src.model.domain import Player
-from src.model.domain.bob import BoBDescription
-
+from src.domain.gamemanage.bob import BoBDescription
 from src.domain.gamemanage.gameessentials import IMapElement
-from src.utility import Position
+from src.domain.gamemanage.player import Player
+from src.utility.geometrictools import Position
 
 
 class BoB(IMapElement):

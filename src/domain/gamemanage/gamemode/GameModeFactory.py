@@ -1,10 +1,9 @@
-from src.domain.gamemode import Mode
-from src.model.factories import IEnvironmentObjectFactory
-
-# TODO GIOACCHINO: sistemare l'import che segue in base all' _objectFactoryBind
-from src.domain.gamemanage.environmentobjects.ClassicEnvironmentObjectFactory import ClassicEnvironmentObjectFactory
-from src.utility import MetaSingleton, Dimensions, GlobalSettings
-from src.utility.mapstrategy import *
+from src.domain.gamemanage.environmentobjects import IEnvironmentObjectFactory, ClassicEnvironmentObjectFactory
+from src.domain.gamemanage.gamemode import Mode
+from src.utility.geometrictools import Dimensions
+from src.utility.mapstrategy import IMapStrategy
+from src.utility.metaclasses import MetaSingleton
+from src.utility.settings import GlobalSettings
 
 
 class GameModeFactory(metaclass=MetaSingleton):

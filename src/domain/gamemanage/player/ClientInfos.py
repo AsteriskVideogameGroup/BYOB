@@ -1,5 +1,4 @@
-from src.domain.Player import Player
-#from src.control.GameHandler import GameHandler
+from src.domain.gamemanage.player import Player
 
 
 class ClientInfos:

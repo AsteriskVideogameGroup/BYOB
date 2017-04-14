@@ -1,7 +1,6 @@
-from src.model.domain import Player
-
-from src.domain.gamemanage.bob import BoBCatalog, BoB
-from src.utility import MetaSingleton
+from src.domain.gamemanage.bob import BoB, BoBCatalog
+from src.domain.gamemanage.player import Player
+from src.utility.metaclasses import MetaSingleton
 
 
 class BoBBuilder(metaclass=MetaSingleton):

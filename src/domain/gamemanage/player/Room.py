@@ -1,4 +1,4 @@
-from src.domain import Player
+from src.domain.gamemanage.player import Player
 
 
 class Room:

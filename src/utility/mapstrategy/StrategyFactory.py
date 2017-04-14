@@ -1,9 +1,9 @@
-from src.utility import MetaSingleton, GlobalSettings
+from src.utility.metaclasses import MetaSingleton
+from src.utility.settings import GlobalSettings
 
 
 class StrategyFactory(metaclass=MetaSingleton):
-
-    #TODO CANCELLARE LA CLASSE, LA LETTURA DELLA MAP STRATEGY è nella MODALITÀ
+    # TODO CANCELLARE LA CLASSE, LA LETTURA DELLA MAP STRATEGY è nella MODALITÀ
 
 
     def getMapStrategy(self):

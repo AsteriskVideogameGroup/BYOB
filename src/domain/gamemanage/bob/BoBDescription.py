@@ -1,7 +1,7 @@
 from src.utility.metaclasses.MetaSingleton import MetaSingleton
 
-class BoBDescription(metaclass=MetaSingleton):
 
+class BoBDescription(metaclass=MetaSingleton):
     ########## ATTRIBUTES DEFINITION ##########
     # _descr:
 

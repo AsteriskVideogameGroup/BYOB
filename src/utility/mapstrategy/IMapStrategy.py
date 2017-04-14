@@ -1,5 +1,7 @@
 import abc
-from src.utility import Dimensions, MetaAbstractSingleton
+
+from src.utility.geometrictools import Dimensions
+from src.utility.metaclasses import MetaAbstractSingleton
 
 
 class IMapStrategy(metaclass=MetaAbstractSingleton):

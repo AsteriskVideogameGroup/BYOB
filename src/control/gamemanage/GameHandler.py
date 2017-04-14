@@ -1,6 +1,6 @@
-from src.model.domain import Game, Player
-
+from src.domain.gamemanage.gameessentials import Game
 from src.domain.gamemanage.bob import BoBBuilder
+from src.domain.gamemanage.player import Player
 
 
 class GameHandler:

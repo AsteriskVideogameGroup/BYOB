@@ -1,5 +1,6 @@
-from src.domain import ClientInfos, MatchMaker
-from src.utility import MetaSingleton
+from src.domain.gamemanage.gameessentials import MatchMaker
+from src.domain.gamemanage.player import ClientInfos
+from src.utility.metaclasses import MetaSingleton
 
 
 class MatchMakingHandler(metaclass=MetaSingleton):

@@ -1,5 +1,5 @@
 from src.domain.gamemanage.obstacle import IObstacle
-from src.utility import Position
+from src.utility.geometrictools import Position
 
 
 class DestructibleObstacle(IObstacle):

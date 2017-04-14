@@ -1,9 +1,8 @@
 import time
 
-from src.model.domain.Map import Map
-from src.model.domain.Room import Room
-
+from src.domain.gamemanage.gameessentials import Map
 from src.domain.gamemanage.gamemode import Mode
+from src.domain.gamemanage.player import Room
 
 
 class Game:
