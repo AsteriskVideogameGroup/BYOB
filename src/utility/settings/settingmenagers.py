@@ -1,9 +1,9 @@
 import json
 
-from src.utility.metaclasses import MetaSingleton
+import src.utility.metaclasses as metaclasses
 
 
-class GlobalSettings(metaclass=MetaSingleton):
+class GlobalSettings(metaclass=metaclasses.MetaSingleton):
 
     ########## ATTRIBUTES DEFINITION ##########
 

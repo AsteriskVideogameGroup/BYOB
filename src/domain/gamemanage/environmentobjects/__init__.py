@@ -1,2 +1,0 @@
-from .ClassicEnvironmentObjectFactory import ClassicEnvironmentObjectFactory
-from .IEnvironmentObjectFactory import IEnvironmentObjectFactory
