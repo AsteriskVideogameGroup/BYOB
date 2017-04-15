@@ -1,13 +1,12 @@
-import abc
-
 import time
-import typing as List
 
-import src.domain.gamemanage.player as player
-import src.domain.gamemanage.environmentobjects as environmentobjects
 import src.domain.gamemanage.gamemode as gamemode
+import src.domain.gamemanage.mapelements.environmentobjects as environmentobjects
+import src.domain.gamemanage.mapelements.mapelements as mapelements
+import src.domain.gamemanage.player as player
 import src.utility.geometrictools as geometrictools
 import src.utility.mapstrategy as mapstrategy
+from src.control.gamehandler import GameHandler
 
 
 class Game:
@@ -66,25 +65,6 @@ class Game:
         self._endgametime = time.time() + duration * 60
         return True
 
-
-class IMapElement(metaclass=abc.ABCMeta):
-    @abc.abstractmethod
-    def setPosition(self, position: geometrictools.Position):
-        """
-        Set the position for the element
-        :param position: position to set
-        """
-
-        pass
-
-    @abc.abstractmethod
-    def getPosition(self) -> geometrictools.Position:
-        """
-        Getter of the position of the element
-        :return: element's position
-        """
-
-        pass
 
 
 class Map:
@@ -206,99 +186,10 @@ class Map:
         for ele in imapelements:
             self._occupyPosition(ele)
 
-    def _occupyPosition(self, mapelement: IMapElement):
+    def _occupyPosition(self, mapelement: mapelements.IMapElement):
         """
         Occupy the position of element in the inner dictionary for the occupied positions
         :param mapelement: map element occuping a position
         """
 
         self._occupiedpositions[mapelement.getPosition()] = mapelement
-
-
-class MatchMaker:
-    _modes = dict()  # singleton instance
-
-    def __new__(cls, *args, **kwargs) -> 'MatchMaker':
-        if cls._modes.get(args[0], None) is None:
-            mode = gamemode.GameModeFactory().getGameMode(args[0])  # translate gamemode ID to IGameMode
-            newmatchmaker = super().__new__(cls)  # instantiate new Matchmaker
-            newmatchmaker._mode = mode  # assign a mode to the matchmaker
-            newmatchmaker._unrankedqueue = list()
-            newmatchmaker._rankedqueue = list()
-            cls._modes[args[0]] = newmatchmaker  # add newmatchmaker into the dict
-
-        return cls._modes.get(args[0])
-
-    @classmethod
-    def getInstance(cls, gamemode: str) -> 'MatchMaker':
-        """
-        Gives an instance of the matchmaker suitable for the selected GameMode
-        :param gamemode: String ID of the GameMode
-        :return: The selected matchmaker for the GameMode
-        """
-        return cls.__new__(cls(), gamemode)
-
-    def pushPlayer(self, client: player.ClientInfos, isranked: bool):
-        """
-        Add a Client to the list of the availables
-        :param client: Client of the Player who wants to join a game
-        :param isranked: Specifies if the Game is ranked
-        """
-        if isranked is True:
-            # TODO non facciamo le ranked
-            self._rankedqueue.append(client)
-            self._rankedqueue.sort()
-            # TODO controllare associazione giocatori
-        else:
-            self._unrankedqueue.append(client)  # add client to the list
-            self._extractClients(self._unrankedqueue)
-
-    def _extractClients(self, queue: List[player.ClientInfos]):
-        maxplayer = self._mode.getMaxPlayers()  # maxplayers depends on the GameMode
-        if len(queue) >= maxplayer:
-
-            print("Room pronta con " + str(len(queue)) + " gioacatori")  # TODO rimuovi
-
-            playerroom = player.Room()  # bundle of player that will play
-            arrclients = list()  # list of the selected players
-
-            for i in range(0, maxplayer):
-                client = queue.pop(0)
-                playerroom.addPlayer(client.player)
-                arrclients.append(client)
-
-            # TODO da completare quando la Map sarà corretta
-
-            newgame = Game(playerroom, self._mode)  # instantiate the new game
-            ghandle = GameHandler(newgame)  # creates the new controller for the clients
-
-            for client in arrclients:  # update all client observers
-                client.update(ghandle)
-
-# TODO vedi dove deve andare
-class GameHandler:
-    ########## ATTRIBUTES DEFINITION ##########
-    # _currentgame : Game
-    # _started : Bool
-
-    def __init__(self, newgame: gameessentials.Game):
-        """
-        :param newgame: Game object to handle
-        """
-        self._currentgame = newgame
-        self._started = False
-
-    def prepareGame(self):
-        """ Prepare the game for the start"""
-
-        self._currentgame.prepareGame()
-        self._started = self._currentgame.startGame()
-
-    def chooseBoB(self, owner: player.Player, bobnameid: str = 'default'):
-        """
-        Let the player choose his BoB
-        :param owner: Player who choose the BoB
-        :param bobnameid: Name id of the chosen BoB
-        """
-        newbob = bob.BoBBuilder().createBoB(bobnameid, owner)
-        self._currentgame.addBoB(newbob)

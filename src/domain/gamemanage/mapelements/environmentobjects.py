@@ -1,6 +1,6 @@
 import abc
 
-import src.domain.gamemanage.obstacle as obstacle
+import src.domain.gamemanage.mapelements.obstacle as obstacle
 import src.utility.metaclasses as metaclasses
 
 

@@ -1,8 +1,8 @@
-import src.domain.gamemanage.gameessentials as gameessentials
+import src.domain.gamemanage.mapelements.mapelements as mapelements
 import src.utility.geometrictools as geometrictools
 
 
-class IObstacle(gameessentials.IMapElement):  # , metaclass=abc.ABCMeta):
+class IObstacle(mapelements.IMapElement):  # , metaclass=abc.ABCMeta):
     pass
 
 

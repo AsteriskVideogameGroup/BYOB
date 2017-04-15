@@ -1,6 +1,5 @@
 import src.domain.gamemanage.player as player
-import src.domain.gamemanage.gameessentials as gameessentials
-import src.domain.gamemanage.bob as bob
+import src.domain.gamemanage.matchmaker as matchmaker
 import src.utility.metaclasses as metaclasses
 
 
@@ -14,4 +13,4 @@ class MatchMakingHandler(metaclass=metaclasses.MetaSingleton):
         :param isranked: False if the game is not ranked
         """
 
-        gameessentials.MatchMaker(modeid).pushPlayer(client, isranked)
+        matchmaker.MatchMaker(modeid).pushPlayer(client, isranked)

@@ -11,7 +11,7 @@ class GlobalSettings(metaclass=metaclasses.MetaSingleton):
     # _settings : dict
 
     def __init__(self):
-        self._settingpath = "../settings/programsettings.json"
+        self._settingpath = "utility/settings/programsettings.json"
         self._settings = dict()
         self._setup()
 

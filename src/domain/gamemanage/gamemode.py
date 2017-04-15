@@ -1,35 +1,9 @@
-import src.domain.gamemanage.environmentobjects as environmentobjects
-import src.utility.metaclasses as metaclasses
+import src.domain.gamemanage.mapelements.environmentobjects as environmentobjects
 import src.utility.geometrictools as geometrictools
-import src.utility.mapstrategy as mapstrategy
+import src.utility.metaclasses as metaclasses
 import src.utility.settings.settingmenagers as settings
 
-
-class GameModeFactory(metaclass=metaclasses.MetaSingleton):
-    MAPSTRATEGY = 'mapstrategy'  # name of the setting that contains all mapstrategy bindings
-
-    def getGameMode(self, modeid: str) -> Mode:
-        """
-        Translate the gamemode ID in the selected GameMode and add it tho _modes
-        :param modeid: String ID of the GameMode
-        """
-
-        positionalg = self._positionAlgBind(modeid)
-        objfactory = self._objectFactoryBind(modeid)
-
-        # TODO dobbiamo prendere i dati da un database
-        newmode = gamemode.Mode(modeid, geometrictools.Dimensions(15, 15), objfactory, positionalg, 4, 3, 300)
-
-        return newmode
-
-    def _positionAlgBind(self, modeid: str) -> mapstrategy.IMapStrategy:
-        mapstrategylist = settings.GlobalSettings().getSetting(GameModeFactory.MAPSTRATEGY)
-        # class name of the requested algorithm
-
-        return globals()[mapstrategylist.get(modeid)]()  # instantiation
-
-    def _objectFactoryBind(self, modeid: str) -> environmentobjects.IEnvironmentObjectFactory:  # TODO completa implementazione
-        return environmentobjects.ClassicEnvironmentObjectFactory()
+from src.utility.mapstrategy import *
 
 
 class Mode:
@@ -43,7 +17,7 @@ class Mode:
     # _mapstrategy: IMapStrategy
 
     def __init__(self, name: str, dimensions: geometrictools.Dimensions,
-                 envobjf: environmentobjects.IEnvironmentObjectFactory, positionalgorithm: mapstrategy.IMapStrategy,
+                 envobjf: environmentobjects.IEnvironmentObjectFactory, positionalgorithm: IMapStrategy,
                  maxplayers: int, invtime: int, duration: int):
         self._dimensions = dimensions
         self._environmentobjectfactory = envobjf
@@ -53,7 +27,7 @@ class Mode:
         self._name = name
         self._mapstrategy = positionalgorithm
 
-    def getMapStrategy(self) -> mapstrategy.IMapStrategy:
+    def getMapStrategy(self) -> IMapStrategy:
         """
         :return: map elements' disposal algorithm object
         """
@@ -65,7 +39,7 @@ class Mode:
         """
         return self._dimensions
 
-    def getEnvironmentObjectFactory(self) -> geometrictools.IEnvironmentObjectFactory:
+    def getEnvironmentObjectFactory(self) -> environmentobjects.IEnvironmentObjectFactory:
         """
         :return: the factory that must produce the environment objects for a given mode
         """
@@ -89,3 +63,30 @@ class Mode:
         :return: duration of each game of the same mode, in minutes
         """
         return self._duration
+
+
+class GameModeFactory(metaclass=metaclasses.MetaSingleton):
+    MAPSTRATEGY = 'mapstrategy'  # name of the setting that contains all mapstrategy bindings
+
+    def getGameMode(self, modeid: str) -> Mode:
+        """
+        Translate the gamemode ID in the selected GameMode and add it tho _modes
+        :param modeid: String ID of the GameMode
+        """
+
+        positionalg = self._positionAlgBind(modeid)
+        objfactory = self._objectFactoryBind(modeid)
+
+        # TODO dobbiamo prendere i dati da un database
+        newmode = Mode(modeid, geometrictools.Dimensions(15, 15), objfactory, positionalg, 4, 3, 300)
+
+        return newmode
+
+    def _positionAlgBind(self, modeid: str) -> IMapStrategy:
+        mapstrategylist = settings.GlobalSettings().getSetting(GameModeFactory.MAPSTRATEGY)
+        # class name of the requested algorithm
+
+        return globals()[mapstrategylist.get(modeid)]()  # instantiation
+
+    def _objectFactoryBind(self, modeid: str) -> environmentobjects.IEnvironmentObjectFactory:  # TODO completa implementazione
+        return environmentobjects.ClassicEnvironmentObjectFactory()
