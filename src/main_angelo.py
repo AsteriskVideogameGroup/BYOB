@@ -1,3 +1,8 @@
+import sys
+import os.path
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 import src.control.gamemanage.MatchMakingHandler as MatchMakingHandler
 import src.control.gamemanage.GameHandler as GameHandler
 import src.domain.gamemanage.player.Player as Player
