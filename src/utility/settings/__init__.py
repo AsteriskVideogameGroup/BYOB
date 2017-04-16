@@ -1,1 +1,1 @@
-from .settingmenagers import GlobalSettings
+from .GlobalSettings import GlobalSettings

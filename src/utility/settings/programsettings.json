@@ -4,5 +4,8 @@
   },
   "mapstrategy": {
     "classic": "FirstMapStrategy"
+  },
+  "environmentobjectfactory": {
+    "classic": "ClassicEnvironmentObjectFactory"
   }
 }
