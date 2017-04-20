@@ -12,6 +12,7 @@ import src.domain.gamemanage.gameessentials.Game as Game
 import src.domain.gamemanage.bob.BoBDescription as BoBDescription
 import src.domain.gamemanage.bob.BoB as BoB
 import src.domain.gamemanage.gamemode.GameModeFactory as GameModeFactory
+import time
 
 """
 
@@ -65,27 +66,26 @@ c2 = ClientInfos(p2)
 c3 = ClientInfos(p3)
 c4 = ClientInfos(p4)
 
-MatchMakingHandler.MatchMakingHandler().makeNewGame(c1)
-MatchMakingHandler.MatchMakingHandler().makeNewGame(c2)
-MatchMakingHandler.MatchMakingHandler().makeNewGame(c3)
-MatchMakingHandler.MatchMakingHandler().makeNewGame(c4)
+MatchMakingHandler().makeNewGame(c1)
+MatchMakingHandler().makeNewGame(c2)
+MatchMakingHandler().makeNewGame(c3)
+MatchMakingHandler().makeNewGame(c4)
 
 c1._gamehandler.chooseBoB(p1)
-c1._gamehandler._currentgame._bobarray[0].prova = "ciao1"
+#c1._gamehandler._currentgame._bobarray[0].prova = "ciao1"
 c2._gamehandler.chooseBoB(p2)
-c2._gamehandler._currentgame._bobarray[1].prova = "ciao2"
+#c2._gamehandler._currentgame._bobarray[1].prova = "ciao2"
 c3._gamehandler.chooseBoB(p3)
-c3._gamehandler._currentgame._bobarray[2].prova = "ciao3"
+#c3._gamehandler._currentgame._bobarray[2].prova = "ciao3"
+#time.sleep(3)
 c4._gamehandler.chooseBoB(p4)
-c4._gamehandler._currentgame._bobarray[3].prova = "ciao4"
+#c4._gamehandler._currentgame._bobarray[3].prova = "ciao4"
 
-
-c1._gamehandler.prepareGame()
-c2._gamehandler.prepareGame()
-c3._gamehandler.prepareGame()
-c4._gamehandler.prepareGame()
+time.sleep(2) # LO SLEEP È NECESSARIO PERCHÈ ALTRIMENTI QUESTO THREAD CERCA DI CALCOLARE COSE CHE NON SONO ANCORA PRONTE.
+              # VEROSIMILMENTE IL CLIENT NON PUÒ RICHIEDERE DATI CHE NON SONO ANCORA PRONTI. SE LO FA È STRONZO E MERITA ERRORI
 
 g = c4._gamehandler._currentgame
+print(g._bobarray)
 
 print("\n ##### BOB POSITION #####\n")
 

@@ -61,11 +61,11 @@ class MatchMaker:
 
             
             newgame = Game(playerroom, self._mode)  # instantiate the new game
-            ghandle = GameHandler.GameHandler(newgame)  # creates the new controller for the clients
+            ghandle = GameHandler(newgame, arrclients)  # creates the new controller for the clients
 
             for client in arrclients:  # update all client observers
                 client.update(ghandle)
 
-        # TODO ANGELO DAEMON CHOOSE BOB con update alla fine
+            ghandle.BoBSelectionCountdownStart()
 
 import src.domain.gamemanage.player.ClientInfos

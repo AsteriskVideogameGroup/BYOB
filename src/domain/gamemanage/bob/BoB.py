@@ -33,6 +33,9 @@ class BoB(IMapElement):
         """
         return self._position
 
+    def getOwner(self) -> 'src.domain.gamemanage.player.Player':
+        return self._owner
+
 import src.domain.gamemanage.bob.BoBDescription
 import src.domain.gamemanage.player.Player
 import src.utility.geometrictools.Position

@@ -6,5 +6,8 @@ class ClientInfos:
     def update(self, newghandle : 'src.control.gamemanage.GameHandler'):
         self._gamehandler = newghandle
 
+    def getPlayer(self):
+        return self._player
+
 import src.control.gamemanage.GameHandler
 import src.domain.gamemanage.player.Player

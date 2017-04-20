@@ -7,5 +7,7 @@
   },
   "environmentobjectfactory": {
     "classic": "ClassicEnvironmentObjectFactory"
-  }
+  },
+  "choosebobcountdown": 10
+
 }

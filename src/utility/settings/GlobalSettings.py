@@ -15,11 +15,10 @@ class GlobalSettings(metaclass=MetaSingleton):
         self._settings = dict()
         self._setup()
 
-    def getSetting(self, setting: str) -> dict:
+    def getSetting(self, setting: str):
         """
         Retrieve the speciefied global setting
         :param setting: Setting to be got
-        :return: Dictionary of settings (returns empty dict if setting doesn't exist)
         """
         return self._settings.get(setting)
 

@@ -1,4 +1,5 @@
 import time
+import copy
 
 
 
@@ -61,5 +62,15 @@ class Game:
         self._endgametime = time.time() + duration*60
         return True
 
+    def getBoBArray(self) -> list:
+        return self._bobarray
+
+    def getMode(self) -> 'src.domain.gamemanage.gamemode.Mode':
+        return self._currentmode
+
+    def getRoom(self) -> 'src.domain.gamemanage.player.Room':
+        return self._gameroom
+
 
 import src.domain.gamemanage.player.Room
+import src.domain.gamemanage.gamemode.Mode

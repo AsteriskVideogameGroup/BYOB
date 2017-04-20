@@ -14,5 +14,8 @@ class Room:
         """
         self._arrplayers.append(player)
 
+    def getNumPlayers(self) -> int:
+        return len(self._arrplayers)
+
 
 import src.domain.gamemanage.player.Player
