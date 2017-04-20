@@ -46,7 +46,7 @@ class MatchMaker:
             print("Room pronta con " + str(len(queue)) + " gioacatori")  # TODO rimuovi
 
             import src.domain.gamemanage.player.Room as Room
-            import src.control.GameHandler as GameHandler
+            import src.control.gamemanage.GameHandler as GameHandler
             import src.domain.gamemanage.gameessentials.Game as Game
 
             playerroom = Room()  # bundle of player that will play
@@ -54,16 +54,18 @@ class MatchMaker:
 
             for i in range(0, maxplayer):
                 client = queue.pop(0)
-                playerroom.addPlayer(client.player)
+                playerroom.addPlayer(client._player) #TODO Gioacchino getter
                 arrclients.append(client)
 
             # TODO da completare quando la Map sarà corretta
 
             
             newgame = Game(playerroom, self._mode)  # instantiate the new game
-            ghandle = GameHandler(newgame)  # creates the new controller for the clients
+            ghandle = GameHandler.GameHandler(newgame)  # creates the new controller for the clients
 
             for client in arrclients:  # update all client observers
                 client.update(ghandle)
+
+        # TODO ANGELO DAEMON CHOOSE BOB con update alla fine
 
 import src.domain.gamemanage.player.ClientInfos

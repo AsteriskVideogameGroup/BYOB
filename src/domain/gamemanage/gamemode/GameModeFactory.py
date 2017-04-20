@@ -8,7 +8,7 @@ class GameModeFactory(metaclass=MetaSingleton):
     MAPSTRATEGY = 'mapstrategy'                 # name of the setting that contains all mapstrategy bindings
     ENVOBJFACTORY = 'environmentobjectfactory'  # name of the setting that contains all environment object factory bindings
 
-    def getGameMode(self, modeid: str) -> 'src.domain.gamemanage.gamemode.Mode':
+    def getGameMode(self, modeid: str = "classic") -> 'src.domain.gamemanage.gamemode.Mode':
         """
         Translate the gamemode ID in the selected GameMode and add it tho _modes
         :param modeid: String ID of the GameMode
@@ -25,15 +25,14 @@ class GameModeFactory(metaclass=MetaSingleton):
 
         return newmode
 
-    def _positionAlgBind(self, modeid: str) -> 'src.utility.mapstrategy.IMapStrategy':
+    def _positionAlgBind(self, modeid: str = "classic") -> 'src.utility.mapstrategy.IMapStrategy':
         import src.utility.mapstrategy.FirstMapStrategy as FirstMapStrategy
 
         mapstrategylist = GlobalSettings().getSetting(GameModeFactory.MAPSTRATEGY)
         # class name of the requested algorithm
-
         return eval(mapstrategylist.get(modeid))()
 
-    def _objectFactoryBind(self, modeid: str) -> 'src.domain.gamemanage.environmentobjects.IEnvironmentObjectFactory': # TODO completa implementazione
+    def _objectFactoryBind(self, modeid: str = "classic") -> 'src.domain.gamemanage.environmentobjects.IEnvironmentObjectFactory': # TODO completa implementazione
 
         import src.domain.gamemanage.environmentobjects.ClassicEnvironmentObjectFactory as ClassicEnvironmentObjectFactory
 

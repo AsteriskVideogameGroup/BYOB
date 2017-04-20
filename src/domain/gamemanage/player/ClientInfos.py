@@ -1,10 +1,10 @@
-from src.domain.gamemanage.player import Player
-
-
 class ClientInfos:
-    def __init__(self, player: Player):
-        self.player = player
+    def __init__(self, player: 'src.domain.gamemanage.player.Player'):
+        self._player = player
+        self._gamehandler = None
 
-    def update(self, newghandle): # TODO newghandle: GameHandler
-        print("sono stato scelto")
-        # TODO
+    def update(self, newghandle : 'src.control.gamemanage.GameHandler'):
+        self._gamehandler = newghandle
+
+import src.control.gamemanage.GameHandler
+import src.domain.gamemanage.player.Player

@@ -2,7 +2,7 @@ from src.utility.metaclasses import MetaSingleton
 
 class MatchMakingHandler(metaclass=MetaSingleton):
 
-    def makeNewGame(self, client: 'src.domain.gamemanage.player.ClientInfos', modeid: str = 'nomode', isranked: bool = False):
+    def makeNewGame(self, client: 'src.domain.gamemanage.player.ClientInfos', modeid: str = 'classic', isranked: bool = False):
         """
         Request to start a new game
         :param client: Infos of the client of player who wants to start a game
