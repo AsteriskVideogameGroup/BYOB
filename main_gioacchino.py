@@ -1,8 +1,3 @@
-from src.domain.gamemanage.bob import BoBDescription
+from src.domain.gamemanage.bob import BoBCatalog
 
-print(BoBDescription("classic"))
-print(BoBDescription("classic"))
-print(BoBDescription("ciao"))
-
-print(BoBDescription("abba") == BoBDescription("ciao"))
-print(BoBDescription("ciao") == BoBDescription("ciao"))
+BoBCatalog().getBoBByID("classic")
