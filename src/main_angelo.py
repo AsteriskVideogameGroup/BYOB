@@ -77,11 +77,11 @@ c2._gamehandler.chooseBoB(p2)
 #c2._gamehandler._currentgame._bobarray[1].prova = "ciao2"
 c3._gamehandler.chooseBoB(p3)
 #c3._gamehandler._currentgame._bobarray[2].prova = "ciao3"
-#time.sleep(3)
-c4._gamehandler.chooseBoB(p4)
+# time.sleep(3)
+#c4._gamehandler.chooseBoB(p4)
 #c4._gamehandler._currentgame._bobarray[3].prova = "ciao4"
 
-time.sleep(2) # LO SLEEP È NECESSARIO PERCHÈ ALTRIMENTI QUESTO THREAD CERCA DI CALCOLARE COSE CHE NON SONO ANCORA PRONTE.
+time.sleep(12) # LO SLEEP È NECESSARIO PERCHÈ ALTRIMENTI QUESTO THREAD CERCA DI CALCOLARE COSE CHE NON SONO ANCORA PRONTE.
               # VEROSIMILMENTE IL CLIENT NON PUÒ RICHIEDERE DATI CHE NON SONO ANCORA PRONTI. SE LO FA È STRONZO E MERITA ERRORI
 
 g = c4._gamehandler._currentgame
