@@ -21,12 +21,12 @@ class ModeMultiton:
         self._composeMode(modeid)
 
     def _composeMode(self, modeid: str):
-        import src.domain.gamemanage.gamemode.ModeBuilder as ModeBuilder
+        # import src.domain.gamemanage.gamemode.ModeBuilder as ModeBuilder
         import src.utility.geometrictools.Dimensions as Dimensions
 
         # call ModeBuilder
-        self._environmentobjectfactory = ModeBuilder().objectFactoryBind(modeid)
-        self._mapstrategy = ModeBuilder().positionAlgBind(modeid)
+        self._environmentobjectfactory = self._objectFactoryBind(modeid)
+        self._mapstrategy = self._positionAlgBind(modeid)
 
         # TODO prendi da database
         self._dimensions = Dimensions(15, 18)
@@ -34,7 +34,6 @@ class ModeMultiton:
         self._duration = 300  # 300 secondi
         self._invulnerabilitytime = 3  # secondi
         self._maxplayers = 4  # numero di giocatori della partita
-
 
     def getDimensions(self) -> 'Dimensions':
         return self._dimensions
@@ -77,6 +76,31 @@ class ModeMultiton:
 
     def getMapStrategy(self, mapstrategy: 'IMapStrategy'):
         self._mapstrategy = mapstrategy
+
+    def _positionAlgBind(self, modeid: str = "classic") -> 'src.utility.mapstrategy.IMapStrategy':
+        # list of accepted Map stratiegies
+        import src.utility.mapstrategy.FirstMapStrategy as FirstMapStrategy
+
+        import src.utility.settings.GlobalSettings as GlobalSettings
+        import src.domain.gamemanage.gamemode.GameModeFactory as GameModeFactory
+
+        mapstrategylist = GlobalSettings().getSetting(GameModeFactory.MAPSTRATEGY)
+        # class name of the requested algorithm
+        return eval(mapstrategylist.get(modeid))()
+
+    def _objectFactoryBind(self,
+                           modeid: str = "classic") -> 'src.domain.gamemanage.environmentobjects.IEnvironmentObjectFactory':  # TODO completa implementazione
+        # list of accepted EnvironmentFactories
+        import \
+            src.domain.gamemanage.environmentobjects.ClassicEnvironmentObjectFactory as ClassicEnvironmentObjectFactory
+
+        import src.utility.settings.GlobalSettings as GlobalSettings
+        import src.domain.gamemanage.gamemode.GameModeFactory as GameModeFactory
+
+        envobjlist = GlobalSettings().getSetting(GameModeFactory.ENVOBJFACTORY)
+        # class name of the requested environment object factory
+
+        return eval(envobjlist.get(modeid))()
 
 
 import src.domain.gamemanage.environmentobjects.IEnvironmentObjectFactory as IEnvironmentObjectFactory
