@@ -43,7 +43,7 @@ class MatchMaker:
         maxplayer = self._mode.getMaxPlayers()  # maxplayers depends on the GameMode
         if len(queue) >= maxplayer:
 
-            print("Room pronta con " + str(len(queue)) + " gioacatori")  # TODO rimuovi
+            print("Room pronta con " + str(len(queue)) + " gioacatori")  # TODO log rimuovi
 
             import src.domain.gamemanage.player.Room as Room
             import src.control.gamemanage.GameHandler as GameHandler
@@ -54,11 +54,8 @@ class MatchMaker:
 
             for i in range(0, maxplayer):
                 client = queue.pop(0)
-                playerroom.addPlayer(client._player) #TODO Gioacchino getter
+                playerroom.addPlayer(client.getPlayer())
                 arrclients.append(client)
-
-            # TODO da completare quando la Map sarà corretta
-
             
             newgame = Game(playerroom, self._mode)  # instantiate the new game
             ghandle = GameHandler(newgame, arrclients)  # creates the new controller for the clients

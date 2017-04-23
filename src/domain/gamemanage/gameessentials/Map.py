@@ -18,11 +18,6 @@ class Map:
     # Dictionary that records the occupied positions (structure = (position,element) )
     # _occupiedpositions : dict
 
-    #TODO RIMUOVERE QUESTO COSTRUTTORE, UTILIZZATO SOLO PER TESTING
-    #def __init__(self, strategy: IMapStrategy):
-    #    self._strategy = strategy
-    #    self._occupiedpositions = {}
-
     def __init__(self, envobjfactory: 'src.domain.gamemanage.environmentobjects.IEnvironmentObjectFactory', strategy: 'src.utility.mapstrategy.IMapStrategy'):
 
         self._envobjfactory = envobjfactory

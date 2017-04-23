@@ -1,7 +1,4 @@
 # TODO nella prossima iterazione, scegliere i parametri che deve avere il bob durante la partita
-
-# TODO è un multiton
-
 class BoBDescription():
     ########## ATTRIBUTES DEFINITION ##########
     # speed: speed of the Bobs upon the Map

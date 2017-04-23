@@ -3,6 +3,8 @@ from src.utility.geometrictools import Dimensions
 import src.utility.settings.GlobalSettings as GlobalSettings
 
 
+#TODO gioacchino: ricontrollare sta cosa
+
 class GameModeFactory(metaclass=MetaSingleton):
 
     MAPSTRATEGY = 'mapstrategy'                 # name of the setting that contains all mapstrategy bindings
