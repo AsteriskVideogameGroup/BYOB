@@ -1,7 +1,12 @@
+from src.domain.gamemanage.gamemode import GameModeFactory
+from src.utility.geometrictools.Dimensions import Dimensions
+from src.utility.settings import GlobalSettings
+
+
 class ModeMultiton:
     _modes = dict()  # singleton instance
 
-    def __new__(cls, *args, **kwargs) -> 'ModeMultiton':
+    def __new__(cls, *args, **kwargs):
         if cls._modes.get(args[0], None) is None:
             cls._modes[args[0]] = super().__new__(cls)
 
@@ -21,8 +26,6 @@ class ModeMultiton:
         self._composeMode(modeid)
 
     def _composeMode(self, modeid: str):
-        # import src.domain.gamemanage.gamemode.ModeBuilder as ModeBuilder
-        import src.utility.geometrictools.Dimensions as Dimensions
 
         # call ModeBuilder
         self._environmentobjectfactory = self._objectFactoryBind(modeid)
@@ -35,10 +38,10 @@ class ModeMultiton:
         self._invulnerabilitytime = 3  # secondi
         self._maxplayers = 4  # numero di giocatori della partita
 
-    def getDimensions(self) -> 'Dimensions':
+    def getDimensions(self):
         return self._dimensions
 
-    def setDimensions(self, dim: 'Dimensions'):
+    def setDimensions(self, dim):
         self._dimensions = dim
 
     def getModeName(self) -> str:
@@ -65,37 +68,27 @@ class ModeMultiton:
     def getMaxPlayers(self, nummaxplayers: int):
         self._maxplayers = nummaxplayers
 
-    def setEnvironmentObjectFactory(self) -> 'IEnvironmentObjectFactory':
+    def setEnvironmentObjectFactory(self):
         return self._environmentobjectfactory
 
-    def getEnvironmentObjectFactory(self, envobjf: 'IEnvironmentObjectFactory'):
+    def getEnvironmentObjectFactory(self, envobjf):
         self._environmentobjectfactory = envobjf
 
-    def setMapStrategy(self) -> 'IMapStrategy':
+    def setMapStrategy(self):
         return self._mapstrategy
 
-    def getMapStrategy(self, mapstrategy: 'IMapStrategy'):
+    def getMapStrategy(self, mapstrategy):
         self._mapstrategy = mapstrategy
 
-    def _positionAlgBind(self, modeid: str = "classic") -> 'src.utility.mapstrategy.IMapStrategy':
+    def _positionAlgBind(self, modeid: str = "classic"):
         # list of accepted Map stratiegies
-        import src.utility.mapstrategy.FirstMapStrategy as FirstMapStrategy
-
-        import src.utility.settings.GlobalSettings as GlobalSettings
-        import src.domain.gamemanage.gamemode.GameModeFactory as GameModeFactory
 
         mapstrategylist = GlobalSettings().getSetting(GameModeFactory.MAPSTRATEGY)
         # class name of the requested algorithm
         return eval(mapstrategylist.get(modeid))()
 
-    def _objectFactoryBind(self,
-                           modeid: str = "classic") -> 'src.domain.gamemanage.environmentobjects.IEnvironmentObjectFactory':  # TODO completa implementazione
+    def _objectFactoryBind(self, modeid: str = "classic"):  # TODO completa implementazione
         # list of accepted EnvironmentFactories
-        import \
-            src.domain.gamemanage.environmentobjects.ClassicEnvironmentObjectFactory as ClassicEnvironmentObjectFactory
-
-        import src.utility.settings.GlobalSettings as GlobalSettings
-        import src.domain.gamemanage.gamemode.GameModeFactory as GameModeFactory
 
         envobjlist = GlobalSettings().getSetting(GameModeFactory.ENVOBJFACTORY)
         # class name of the requested environment object factory
@@ -103,6 +96,3 @@ class ModeMultiton:
         return eval(envobjlist.get(modeid))()
 
 
-import src.domain.gamemanage.environmentobjects.IEnvironmentObjectFactory as IEnvironmentObjectFactory
-import src.utility.mapstrategy.IMapStrategy as IMapStrategy
-import src.utility.geometrictools.Dimensions as Dimensions

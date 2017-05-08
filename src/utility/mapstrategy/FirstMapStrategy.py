@@ -4,12 +4,12 @@ import random
 
 from src.utility.metaclasses.MetaSingleton import MetaSingleton
 
-from src.utility.geometrictools import Position, Dimensions
+from src.utility.geometrictools import Position
 from src.utility.mapstrategy.IMapStrategy import IMapStrategy
 
 
 class FirstMapStrategy(IMapStrategy, metaclass=MetaSingleton):
-    def disposeUndestrObstacles(self, undstrobstacles: list, dim: Dimensions) -> list:
+    def disposeUndestrObstacles(self, undstrobstacles: list, dim) -> list:
         """
         Dispose undestructible obstacles inside a map in (2k,2k) positions
 
@@ -54,7 +54,7 @@ class FirstMapStrategy(IMapStrategy, metaclass=MetaSingleton):
 
         return undestructibleelementslist
 
-    def disposeBoBs(self, bobs: list, dim: Dimensions):
+    def disposeBoBs(self, bobs: list, dim):
         """
         Disposal algorithm for BoBs (balanced number of BoBs for each side: longer side => more BoBs)
 
@@ -182,7 +182,7 @@ class FirstMapStrategy(IMapStrategy, metaclass=MetaSingleton):
 
         return remainingbobs, bobit
 
-    def disposeDestrObstacles(self, dstrobstacles: list, dim: Dimensions, bobs: list) -> list:
+    def disposeDestrObstacles(self, dstrobstacles: list, dim, bobs: list) -> list:
         """
         Randomly dispose destructible obstacles inside a map (caring about a safe zone near BoBs)
 
@@ -236,7 +236,7 @@ class FirstMapStrategy(IMapStrategy, metaclass=MetaSingleton):
 
         return destructibleelementslist
 
-    def _selectSafeArea(self, dim: Dimensions, bobs: list, mindist: int) -> list:
+    def _selectSafeArea(self, dim, bobs: list, mindist: int) -> list:
         """
         Select area that must be free near bobs
         :param dim: dimensions of the map where to select the safe area
@@ -273,7 +273,7 @@ class FirstMapStrategy(IMapStrategy, metaclass=MetaSingleton):
 
         return safearea
 
-    def disposePowerUps(self, powerups: list, dim: Dimensions, occpositions: dict) -> list:
+    def disposePowerUps(self, powerups: list, dim, occpositions: dict) -> list:
         """
         Randomly place a list of power-ups on the map (in an unoccupied position)
         :param powerups: list of power-ups to place

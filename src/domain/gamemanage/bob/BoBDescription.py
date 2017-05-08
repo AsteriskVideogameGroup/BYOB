@@ -6,14 +6,14 @@ class BoBDescription():
 
     _descriptions = dict()  # singleton instance
 
-    def __new__(cls, *args, **kwargs) -> 'BoBDescription':
+    def __new__(cls, *args, **kwargs):
         if cls._descriptions.get(args[0], None) is None:
             cls._descriptions[args[0]] = super().__new__(cls)
 
         return cls._descriptions.get(args[0])
 
     @classmethod
-    def getDescription(cls, description: str) -> 'BoBDescription':
+    def getDescription(cls, description: str):
         """
         Gives an instance of the BoBDescrioption
         :param description: String ID of the BoBDescrioption

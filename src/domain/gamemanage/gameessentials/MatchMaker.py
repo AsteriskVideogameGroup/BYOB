@@ -1,10 +1,15 @@
+from src.control.gamemanage.GameHandler import GameHandler
+from src.domain.gamemanage.gameessentials import Game
+from src.domain.gamemanage.gamemode import GameModeFactory
+from src.domain.gamemanage.player import Room
+
+
 class MatchMaker:
 
     _modes = dict()  # singleton instance
 
-    def __new__(cls, *args, **kwargs) -> 'MatchMaker':
+    def __new__(cls, *args, **kwargs):
         if cls._modes.get(args[0], None) is None:
-            import src.domain.gamemanage.gamemode.GameModeFactory as GameModeFactory
 
             mode = GameModeFactory().getGameMode(args[0])  # translate gamemode ID to IGameMode
             newmatchmaker = super().__new__(cls)  # instantiate new Matchmaker
@@ -16,7 +21,7 @@ class MatchMaker:
         return cls._modes.get(args[0])
 
     @classmethod
-    def getInstance(cls, gamemode: str) -> 'MatchMaker':
+    def getInstance(cls, gamemode: str):
         """
         Gives an instance of the matchmaker suitable for the selected GameMode
         :param gamemode: String ID of the GameMode
@@ -24,7 +29,7 @@ class MatchMaker:
         """
         return cls.__new__(cls(), gamemode)
 
-    def pushPlayer(self, client: 'src.domain.gamemanage.player.ClientInfos', isranked: bool):
+    def pushPlayer(self, client, isranked: bool):
         """
         Add a Client to the list of the availables
         :param client: Client of the Player who wants to join a game
@@ -45,10 +50,6 @@ class MatchMaker:
 
             print("Room pronta con " + str(len(queue)) + " gioacatori")  # TODO log rimuovi
 
-            import src.domain.gamemanage.player.Room as Room
-            import src.control.gamemanage.GameHandler as GameHandler
-            import src.domain.gamemanage.gameessentials.Game as Game
-
             playerroom = Room()  # bundle of player that will play
             arrclients = list()  # list of the selected players
 
@@ -65,4 +66,3 @@ class MatchMaker:
 
             ghandle.BoBSelectionCountdownStart()
 
-import src.domain.gamemanage.player.ClientInfos

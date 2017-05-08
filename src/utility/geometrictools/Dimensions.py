@@ -1,5 +1,4 @@
 class Dimensions:
-
     ########## ATTRIBUTES DEFINITION ##########
     # _width : int
     # _height : int

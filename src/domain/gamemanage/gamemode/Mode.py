@@ -9,9 +9,7 @@ class Mode:
     # _name : String
     # _mapstrategy: IMapStrategy
 
-    def __init__(self, name: str, dimensions: 'src.utility.geometrictools.Dimensions',
-                 envobjf: 'src.domain.gamemanage.environmentobjects.IEnvironmentObjectFactory',
-                 positionalgorithm: 'src.utility.mapstrategy.IMapStrategy', maxplayers: int, invtime: int, duration: int):
+    def __init__(self, name: str, dimensions, envobjf, positionalgorithm, maxplayers: int, invtime: int, duration: int):
         self._dimensions = dimensions
         self._environmentobjectfactory = envobjf
         self._maxplayers = maxplayers
@@ -20,19 +18,19 @@ class Mode:
         self._name = name
         self._mapstrategy = positionalgorithm
 
-    def getMapStrategy(self) -> 'src.utility.mapstrategy.IMapStrategy':
+    def getMapStrategy(self):
         """
         :return: map elements' disposal algorithm object
         """
         return self._mapstrategy
 
-    def getMapDimensions(self) -> 'src.utility.geometrictools.Dimensions':
+    def getMapDimensions(self):
         """ 
         :return: map's dimensions for a given mode
         """
         return self._dimensions
 
-    def getEnvironmentObjectFactory(self) -> 'src.domain.gamemanage.environmentobjects.IEnvironmentObjectFactory':
+    def getEnvironmentObjectFactory(self):
         """
         :return: the factory that must produce the environment objects for a given mode
         """
@@ -57,8 +55,4 @@ class Mode:
         """
         return self._duration
 
-
-import src.domain.gamemanage.environmentobjects.IEnvironmentObjectFactory
-import src.utility.geometrictools.Dimensions
-import src.utility.mapstrategy.IMapStrategy
 

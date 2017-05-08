@@ -18,20 +18,20 @@ class Map:
     # Dictionary that records the occupied positions (structure = (position,element) )
     # _occupiedpositions : dict
 
-    def __init__(self, envobjfactory: 'src.domain.gamemanage.environmentobjects.IEnvironmentObjectFactory', strategy: 'src.utility.mapstrategy.IMapStrategy'):
+    def __init__(self, envobjfactory, strategy):
 
         self._envobjfactory = envobjfactory
         self._strategy = strategy
         self._occupiedpositions = {}
 
-    def setMapStrategy(self, mapstrategy: 'src.utility.mapstrategy.IMapStrategy'):
+    def setMapStrategy(self, mapstrategy):
         """
         Setting of the positioning algorithm
         :param mapstrategy: algorithm for the positioning of the map elements:
         """
         self._strategy = mapstrategy
 
-    def setDimensions(self, dimensions: 'src.utility.geometrictools.Dimensions'):
+    def setDimensions(self, dimensions):
         """
         Set the dimensions for the map (number of tiles for width and for height)
         :param dimensions: dimensions to set
@@ -81,14 +81,14 @@ class Map:
 
         return self._dimensions
 
-    def isOccupied(self, position: 'src.utility.geometrictools.Position'):
+    def isOccupied(self, position):
         """
         Check if the position is occupied
         :param position: position to check
         :return: True if occupied, False if free
         """
 
-        return (position in self._occupiedpositions)
+        return position in self._occupiedpositions
 
     def setUndstrObstacleArray(self, undstrarray: list):
         """
@@ -116,18 +116,11 @@ class Map:
         for ele in imapelements:
             self._occupyPosition(ele)
 
-    def _occupyPosition(self, mapelement: 'src.domain.gamemanage.gameessentials.IMapElement'):
+    def _occupyPosition(self, mapelement):
         """
         Occupy the position of element in the inner dictionary for the occupied positions
         :param mapelement: map element occuping a position
         """
 
         self._occupiedpositions[mapelement.getPosition()] = mapelement
-
-
-import src.domain.gamemanage.environmentobjects.IEnvironmentObjectFactory
-import src.domain.gamemanage.gameessentials.IMapElement
-import src.utility.geometrictools.Dimensions
-import src.utility.geometrictools.Position
-import src.utility.mapstrategy.IMapStrategy
 

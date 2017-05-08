@@ -1,10 +1,10 @@
 import time
 import copy
 
+from src.domain.gamemanage.gameessentials import Map
 
 
 class Game:
-
     ########## ATTRIBUTES DEFINITION ##########
     # _gameroom : Room
     # _currentmode : Mode
@@ -12,7 +12,7 @@ class Game:
     # _gamemap : Map
     # _endgametime : time.Time()
 
-    def __init__(self, playerroom: 'src.domain.gamemanage.player.Room', gamemode: 'src.domain.gamemanage.gamemode.Mode'):
+    def __init__(self, playerroom, gamemode):
         """
         :param playerroom: virtual room for the players of the game
         :param gamemode: game mode of the game
@@ -33,8 +33,6 @@ class Game:
         """
         Prepare the game for the start
         """
-
-        import src.domain.gamemanage.gameessentials.Map as Map
 
         dims = self._currentmode.getMapDimensions()
         envobj = self._currentmode.getEnvironmentObjectFactory()
@@ -59,18 +57,14 @@ class Game:
         """
 
         duration = self._currentmode.getDuration()
-        self._endgametime = time.time() + duration*60
+        self._endgametime = time.time() + duration * 60
         return True
 
     def getBoBArray(self) -> list:
         return self._bobarray
 
-    def getMode(self) -> 'src.domain.gamemanage.gamemode.Mode':
+    def getMode(self):
         return self._currentmode
 
-    def getRoom(self) -> 'src.domain.gamemanage.player.Room':
+    def getRoom(self):
         return self._gameroom
-
-
-import src.domain.gamemanage.player.Room
-import src.domain.gamemanage.gamemode.Mode

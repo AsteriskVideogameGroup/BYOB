@@ -1,11 +1,9 @@
 import abc
 
-from src.utility.geometrictools import Position
-
 
 class IMapElement(metaclass=abc.ABCMeta):
     @abc.abstractmethod
-    def setPosition(self, position: Position):
+    def setPosition(self, position):
         """
         Set the position for the element
         :param position: position to set
@@ -14,7 +12,7 @@ class IMapElement(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def getPosition(self) -> Position:
+    def getPosition(self):
         """
         Getter of the position of the element
         :return: element's position

@@ -1,17 +1,16 @@
+from src.domain.gamemanage.obstacle import DestructibleObstacle, UndestructibleObstacle
 from src.utility.metaclasses import MetaSingleton
 
 
 class ClassicEnvironmentObjectFactory(metaclass=MetaSingleton):
 
     def getDestructibleObstacles(self) -> list:
-        import src.domain.gamemanage.obstacle.DestructibleObstacle as DestructibleObstacle
 
         destructibleexamples = list()
         destructibleexamples.append(DestructibleObstacle())
         return destructibleexamples
 
     def getUndestructibleOstacles(self) -> list:
-        import src.domain.gamemanage.obstacle.UndestructibleObstacle as UndestructibleObstacle
 
         undestructibleexamples = list()
         undestructibleexamples.append(UndestructibleObstacle())
