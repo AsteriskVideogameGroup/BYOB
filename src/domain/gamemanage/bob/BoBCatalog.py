@@ -1,4 +1,4 @@
-from src.domain.gamemanage.bob import BoBDescription
+from src.domain.gamemanage.bob.BoBDescription import BoBDescription
 from src.utility.metaclasses.MetaSingleton import MetaSingleton
 
 

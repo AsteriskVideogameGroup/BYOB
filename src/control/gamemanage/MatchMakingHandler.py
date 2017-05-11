@@ -1,5 +1,5 @@
-from src.domain.gamemanage.gameessentials import MatchMaker
-from src.utility.metaclasses import MetaSingleton
+from src.domain.gamemanage.gameessentials.MatchMaker import MatchMaker
+from src.utility.metaclasses.MetaSingleton import MetaSingleton
 
 
 class MatchMakingHandler(metaclass=MetaSingleton):

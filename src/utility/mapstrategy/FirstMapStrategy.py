@@ -2,9 +2,9 @@ import copy
 import math
 import random
 
+from src.utility.geometrictools.Position import Position
 from src.utility.metaclasses.MetaSingleton import MetaSingleton
 
-from src.utility.geometrictools import Position
 from src.utility.mapstrategy.IMapStrategy import IMapStrategy
 
 
@@ -136,14 +136,15 @@ class FirstMapStrategy(IMapStrategy, metaclass=MetaSingleton):
         if longside:
             delta = math.floor(height / math.ceil(remainingbobs / remainingsides))
         else:
+            # print(math.floor(remainingbobs / remainingsides))
             delta = math.floor(height / math.floor(remainingbobs / remainingsides))
         if negative:
-            for i in range(height, 1 + 1, -delta):
+            for i in range(height, 1, -delta):
                 bobslist[bobit].setPosition(Position(x, i))
                 remainingbobs = remainingbobs - 1
                 bobit = bobit + 1
         else:
-            for i in range(1, height + 1, delta):
+            for i in range(1, height, delta):
                 bobslist[bobit].setPosition(Position(x, i))
                 remainingbobs = remainingbobs - 1
                 bobit = bobit + 1
@@ -170,12 +171,12 @@ class FirstMapStrategy(IMapStrategy, metaclass=MetaSingleton):
         else:
             delta = math.floor(width / math.floor(remainingbobs / remainingsides))
         if negative:
-            for i in range(width, 1 + 1, -delta):
+            for i in range(width, 1 , -delta):
                 bobslist[bobit].setPosition(Position(i, y))
                 remainingbobs = remainingbobs - 1
                 bobit = bobit + 1
         else:
-            for i in range(1, width + 1, delta):
+            for i in range(1, width , delta):
                 bobslist[bobit].setPosition(Position(i, y))
                 remainingbobs = remainingbobs - 1
                 bobit = bobit + 1

@@ -1,7 +1,7 @@
 from src.control.gamemanage.GameHandler import GameHandler
-from src.domain.gamemanage.gameessentials import Game
-from src.domain.gamemanage.gamemode import GameModeFactory
-from src.domain.gamemanage.player import Room
+from src.domain.gamemanage.gameessentials.Game import Game
+from src.domain.gamemanage.gamemode.ModeBuilder import ModeBuilder
+from src.domain.gamemanage.player.Room import Room
 
 
 class MatchMaker:
@@ -11,7 +11,7 @@ class MatchMaker:
     def __new__(cls, *args, **kwargs):
         if cls._modes.get(args[0], None) is None:
 
-            mode = GameModeFactory().getGameMode(args[0])  # translate gamemode ID to IGameMode
+            mode = ModeBuilder().getMode(args[0]) # translate gamemode ID to IGameMode
             newmatchmaker = super().__new__(cls)  # instantiate new Matchmaker
             newmatchmaker._mode = mode  # assign a mode to the matchmaker
             newmatchmaker._unrankedqueue = list()

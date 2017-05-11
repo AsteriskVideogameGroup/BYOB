@@ -22,9 +22,20 @@ class ModeBuilder(metaclass=MetaSingleton):
     _ENVFACTORY = "environmentobjfactory"
     _INVULNERABILITYTIME = "invulnarabilitytime"
 
-    def build(self, modeid: str):
+    def __init__(self):
+        self._buildedmodes = dict()
+
+    def _build(self, modeid: str):
+        """
+        
+        Build mode from configuration
+
+        :param modeid: ID of the mode
+        :return: bulded Mode
+        """
 
         # valore di tutti i parametri della modalità da restituire
+        # TODO si potrebbe prendere anche da un database, per ora è ok
         jsonselectedmode: dict = GlobalSettings().getSetting(ModeBuilder._MODES_SETTINGS).get(modeid)
 
         # map dimensions
@@ -55,8 +66,23 @@ class ModeBuilder(metaclass=MetaSingleton):
         # create new mode
         mode = Mode(modename, mapdimension, envfactory, palgo, maxplayers, invtime, duration)
 
-        print(mode)
+        return mode
 
+    def getMode(self, modeid: str):
 
+        """
+        
+        Get the selected mode
 
+        :param modeid: ID of the mode
+        :return: requested mode
+        """
+        print(self._buildedmodes)
 
+        if modeid in self._buildedmodes:
+            mode = self._buildedmodes.get(modeid)
+        else:
+            mode = self._build(modeid)
+            self._buildedmodes[modeid] = mode
+
+        return mode

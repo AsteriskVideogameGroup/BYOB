@@ -1,8 +1,8 @@
 import threading
 import time
 
-from src.domain.gamemanage.bob import BoBBuilder
-from src.utility.settings import GlobalSettings
+from src.domain.gamemanage.bob.BoBBuilder import BoBBuilder
+from src.utility.settings.GlobalSettings import GlobalSettings
 
 
 class GameHandler:

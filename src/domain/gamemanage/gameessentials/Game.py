@@ -1,7 +1,7 @@
 import time
 import copy
 
-from src.domain.gamemanage.gameessentials import Map
+from src.domain.gamemanage.gameessentials.Map import Map
 
 
 class Game:

@@ -4,7 +4,7 @@
     "classic_debug": {
       "name": "Classic Mode",
       "dimensionsX": 15,
-      "dimensionsY": 8,
+      "dimensionsY": 11,
       "maxplayers": 4,
       "duration": 300,
       "positionalalgo": "FirstMapStrategy",
@@ -19,6 +19,6 @@
   "environmentobjectfactory": {
     "classic": "ClassicEnvironmentObjectFactory"
   },
-  "choosebobcountdown": 10
+  "choosebobcountdown": 1
 
 }
