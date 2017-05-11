@@ -1,5 +1,6 @@
-from src.domain.gamemanage.obstacle import DestructibleObstacle, UndestructibleObstacle
-from src.utility.metaclasses import MetaSingleton
+from src.domain.gamemanage.obstacle.DestructibleObstacle import DestructibleObstacle
+from src.domain.gamemanage.obstacle.UndestructibleObstacle import UndestructibleObstacle
+from src.utility.metaclasses.MetaSingleton import MetaSingleton
 
 
 class ClassicEnvironmentObjectFactory(metaclass=MetaSingleton):

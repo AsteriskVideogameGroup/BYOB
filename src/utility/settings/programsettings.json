@@ -1,6 +1,17 @@
 {
   "modes" : {
-    "classic": "ClassicMode"
+    "classic": "ClassicMode",
+    "classic_debug": {
+      "name": "Classic Mode",
+      "dimensionsX": 15,
+      "dimensionsY": 8,
+      "maxplayers": 4,
+      "duration": 300,
+      "positionalalgo": "FirstMapStrategy",
+      "environmentobjfactory": "ClassicEnvironmentObjectFactory",
+      "invulnarabilitytime": 2
+
+    }
   },
   "mapstrategy": {
     "classic": "FirstMapStrategy"

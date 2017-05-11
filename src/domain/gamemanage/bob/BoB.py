@@ -1,4 +1,4 @@
-import src.domain.gamemanage.gameessentials.IMapElement as IMapElement
+from src.domain.gamemanage.gameessentials.IMapElement import IMapElement
 
 
 class BoB(IMapElement):
