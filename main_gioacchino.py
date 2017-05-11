@@ -43,20 +43,26 @@ MatchMakingHandler().makeNewGame(client8, "classic_debug", False)
 '''
 from src.domain.gamemanage.player.ClientInfos import ClientInfos
 from src.domain.gamemanage.player.Player import Player
-from src.utility.netmiddleware.PyroNetMiddlewareAdapter import PyroNetMiddlewareAdapter
+from src.utility.netmiddleware.pyro.PyroNetMiddlewareAdapter import PyroNetMiddlewareAdapter
 
 md = PyroNetMiddlewareAdapter()
 p1 = Player()
 client1 = ClientInfos(p1)
 md.register(client1, "ciao")
-print("rady")
-# md.initService()
+print("ready")
+md.initService()
+
 
 p7 = Player()
 client7 = ClientInfos(p7)
 md.register(client7, "ultimoarrivato")
 print("oh my god")
-md.initService()
+
+p8 = Player()
+client8 = ClientInfos(p8)
+md.register(client8, "discutibile")
+print("ultimo")
+
 
 
 

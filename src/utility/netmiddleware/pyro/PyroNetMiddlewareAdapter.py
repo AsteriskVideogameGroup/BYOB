@@ -1,8 +1,10 @@
+from threading import Thread
+
 import Pyro4
 
 from src.utility.metaclasses.MetaSingleton import MetaSingleton
 from src.utility.netmiddleware.INetMiddlewareAdapter import INetMiddlewareAdapter
-
+# from src.utility.netmiddleware.pyro.PyroDaemonThread import PyroDaemonThread
 
 class PyroNetMiddlewareAdapter(INetMiddlewareAdapter, metaclass=MetaSingleton):
     def __init__(self):
@@ -25,5 +27,11 @@ class PyroNetMiddlewareAdapter(INetMiddlewareAdapter, metaclass=MetaSingleton):
     def getProxy(self, name: str) -> object:
         pass
 
+
     def initService(self):
-        self._pyrodaemon.requestLoop()
+
+        def serverWorker(daemon):
+            daemon.requestLoop()
+
+        threadserver = Thread(target=serverWorker, args=(self._pyrodaemon,))
+        threadserver.start()
