@@ -9,7 +9,7 @@ from src.domain.gamemanage.player.Player import Player
 p1 = Player()
 
 b = BoB("descr", p1)
-'''
+
 from src.control.gamemanage.MatchMakingHandler import MatchMakingHandler
 from src.domain.gamemanage.gamemode.ModeBuilder import ModeBuilder
 from src.domain.gamemanage.player.ClientInfos import ClientInfos
@@ -40,6 +40,31 @@ MatchMakingHandler().makeNewGame(client5, "classic_debug", False)
 MatchMakingHandler().makeNewGame(client6, "classic_debug", False)
 MatchMakingHandler().makeNewGame(client7, "classic_debug", False)
 MatchMakingHandler().makeNewGame(client8, "classic_debug", False)
+'''
+from src.domain.gamemanage.player.ClientInfos import ClientInfos
+from src.domain.gamemanage.player.Player import Player
+from src.utility.netmiddleware.PyroNetMiddlewareAdapter import PyroNetMiddlewareAdapter
+
+md = PyroNetMiddlewareAdapter()
+p1 = Player()
+client1 = ClientInfos(p1)
+md.register(client1, "ciao")
+print("rady")
+# md.initService()
+
+p7 = Player()
+client7 = ClientInfos(p7)
+md.register(client7, "ultimoarrivato")
+print("oh my god")
+md.initService()
+
+
+
+
+
+
+
+
 
 
 
