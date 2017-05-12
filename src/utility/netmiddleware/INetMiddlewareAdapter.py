@@ -40,7 +40,3 @@ class INetMiddlewareAdapter(metaclass=MetaAbstractSingleton):
     @abc.abstractmethod
     def setPeerResolverURI(self, uri: str):
         pass
-
-    @abc.abstractmethod
-    def getURI(self) -> str:
-        pass

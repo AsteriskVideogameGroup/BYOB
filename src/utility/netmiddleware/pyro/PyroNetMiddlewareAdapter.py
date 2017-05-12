@@ -18,9 +18,6 @@ class PyroNetMiddlewareAdapter(INetMiddlewareAdapter, metaclass=MetaSingleton):
     def unregister(self, obj: object = None, name: str = "none"):
         pass
 
-    def getURI(self) -> str:
-        pass
-
     def setPeerResolverURI(self, uri: str):
         pass
 
