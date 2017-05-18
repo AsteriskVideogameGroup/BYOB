@@ -1,10 +1,14 @@
 import threading
 import time
+import uuid
+
+import Pyro4
 
 from src.domain.gamemanage.bob.BoBBuilder import BoBBuilder
 from src.utility.settings.GlobalSettings import GlobalSettings
 
 
+@Pyro4.expose
 class GameHandler:
     CHOOSEBOBCOUNTDOWN = "choosebobcountdown"
 
@@ -21,6 +25,10 @@ class GameHandler:
         self._started = False
         self._bobselectable = False
         self._clientslist = clients
+        self._uniquename = str(uuid.uuid4())
+
+    def getUniqueName(self):
+        return self._uniquename
 
     def prepareGame(self):
         """ Prepare the game for the start"""
@@ -76,5 +84,8 @@ class GameHandler:
 
         self.prepareGame()  # TODO DA DISCUTERE
 
+        state = dict()  # TODO modificare con valori sensati
+        state["game-started"] = True  # notify that the game is started
+
         for client in self._clientslist:
-            client.update(self)  # TODO modificare con pyro
+            client.update(state)

@@ -30,7 +30,7 @@ class INetMiddlewareAdapter(metaclass=MetaAbstractSingleton):
         pass
 
     @abc.abstractmethod
-    def getProxy(self, name: str) -> object:
+    def getProxy(self, name: str):
         """
         Get a specified proxy from the system
         :param name: name of the proxy

@@ -5,16 +5,15 @@ from src.domain.gamemanage.gameessentials.Game import Game
 from src.domain.gamemanage.gamemode.ModeBuilder import ModeBuilder
 from src.domain.gamemanage.player.Room import Room
 from src.domain.gamemanage.player.Player import Player
+from src.utility.netmiddleware.NetworkObjectTranslator import NetworkObjectTranslator
 
 
 class MatchMaker:
-
     _modes = dict()  # singleton instance
 
     def __new__(cls, *args, **kwargs):
         if cls._modes.get(args[0], None) is None:
-
-            mode = ModeBuilder().getMode(args[0]) # translate gamemode ID to IGameMode
+            mode = ModeBuilder().getMode(args[0])  # translate gamemode ID to IGameMode
             newmatchmaker = super().__new__(cls)  # instantiate new Matchmaker
             newmatchmaker._mode = mode  # assign a mode to the matchmaker
             newmatchmaker._unrankedqueue = list()
@@ -56,29 +55,22 @@ class MatchMaker:
             playerroom = Room()  # bundle of player that will play
             arrclients = list()  # list of the selected players
 
-
             for i in range(0, maxplayer):
                 client = queue.pop(0)
-
-                # TODO migliorare
-
-                #player_ser:dict = client.getPlayer()
-                #palyer = serpent.loads(player_ser.encode())
-
-                #print(player_ser)
                 playerroom.addPlayer(client.getPlayer())
                 arrclients.append(client)
 
             print(arrclients)
-            
+
             newgame = Game(playerroom, self._mode)  # instantiate the new game
             ghandle = GameHandler(newgame, arrclients)  # creates the new controller for the clients
 
-            # TODO implementare update
-            #for client in arrclients:  # update all client observers
-                #client.update(ghandle)
+            print(ghandle.getUniqueName())
+            NetworkObjectTranslator().register(ghandle, ghandle.getUniqueName())
 
-            print("debug")
+            for client in arrclients:  # update all client observers
+                client.notifyGameHandler(ghandle.getUniqueName())
+
+            # print("debug")
 
             ghandle.BoBSelectionCountdownStart()
-
