@@ -1,7 +1,10 @@
+import serpent
+
 from src.control.gamemanage.GameHandler import GameHandler
 from src.domain.gamemanage.gameessentials.Game import Game
 from src.domain.gamemanage.gamemode.ModeBuilder import ModeBuilder
 from src.domain.gamemanage.player.Room import Room
+from src.domain.gamemanage.player.Player import Player
 
 
 class MatchMaker:
@@ -53,16 +56,29 @@ class MatchMaker:
             playerroom = Room()  # bundle of player that will play
             arrclients = list()  # list of the selected players
 
+
             for i in range(0, maxplayer):
                 client = queue.pop(0)
+
+                # TODO migliorare
+
+                #player_ser:dict = client.getPlayer()
+                #palyer = serpent.loads(player_ser.encode())
+
+                #print(player_ser)
                 playerroom.addPlayer(client.getPlayer())
                 arrclients.append(client)
+
+            print(arrclients)
             
             newgame = Game(playerroom, self._mode)  # instantiate the new game
             ghandle = GameHandler(newgame, arrclients)  # creates the new controller for the clients
 
-            for client in arrclients:  # update all client observers
-                client.update(ghandle)
+            # TODO implementare update
+            #for client in arrclients:  # update all client observers
+                #client.update(ghandle)
+
+            print("debug")
 
             ghandle.BoBSelectionCountdownStart()
 

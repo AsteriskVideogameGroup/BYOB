@@ -40,7 +40,7 @@ MatchMakingHandler().makeNewGame(client5, "classic_debug", False)
 MatchMakingHandler().makeNewGame(client6, "classic_debug", False)
 MatchMakingHandler().makeNewGame(client7, "classic_debug", False)
 MatchMakingHandler().makeNewGame(client8, "classic_debug", False)
-'''
+
 from src.domain.gamemanage.player.ClientInfos import ClientInfos
 from src.domain.gamemanage.player.Player import Player
 from src.utility.netmiddleware.pyro.PyroNetMiddlewareAdapter import PyroNetMiddlewareAdapter
@@ -62,6 +62,25 @@ p8 = Player()
 client8 = ClientInfos(p8)
 md.register(client8, "discutibile")
 print("ultimo")
+
+from src.control.gamemanage.MatchMakingHandler import MatchMakingHandler
+from src.utility.netmiddleware.pyro.PyroNetMiddlewareAdapter import PyroNetMiddlewareAdapter
+
+md = PyroNetMiddlewareAdapter()
+md.initService()
+
+md.register(MatchMakingHandler(), "game-handle")
+'''
+import Pyro4
+
+from src.control.gamemanage.MatchMakingHandler import MatchMakingHandler
+from src.utility.netmiddleware.NetworkObjectTranslator import NetworkObjectTranslator
+from src.utility.netmiddleware.pyro.PyroNetMiddlewareAdapter import PyroNetMiddlewareAdapter
+
+NetworkObjectTranslator().init("localhost", 9090)
+
+NetworkObjectTranslator().register(MatchMakingHandler(), "game-handle")
+#md.register(MatchMakingHandler(), "game-handle")
 
 
 

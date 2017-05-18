@@ -19,6 +19,8 @@
   "environmentobjectfactory": {
     "classic": "ClassicEnvironmentObjectFactory"
   },
-  "choosebobcountdown": 1
+  "choosebobcountdown": 1,
+
+  "netmiddlewaretrasnslator": "PyroNetMiddlewareAdapter"
 
 }

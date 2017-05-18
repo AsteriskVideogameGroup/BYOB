@@ -63,15 +63,18 @@ class GameHandler:
         for client in self._clientslist:
             choose = False
             for bob in bobarray:
+                print("debug 2")
                 if client.getPlayer() == bob.getOwner():
                     choose = True
                     break
             if not choose:
                 self.chooseBoB(client.getPlayer())
 
+        print("debug3")
+
         self._bobselectable = False
 
         self.prepareGame()  # TODO DA DISCUTERE
 
         for client in self._clientslist:
-            client.update(self)
+            client.update(self)  # TODO modificare con pyro

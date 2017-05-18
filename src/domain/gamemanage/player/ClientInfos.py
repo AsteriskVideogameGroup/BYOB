@@ -1,3 +1,7 @@
+import Pyro4
+
+
+@Pyro4.expose
 class ClientInfos:
     def __init__(self, player):
         self._player = player

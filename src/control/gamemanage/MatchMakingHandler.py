@@ -1,9 +1,13 @@
+import Pyro4
+
 from src.domain.gamemanage.gameessentials.MatchMaker import MatchMaker
 from src.utility.metaclasses.MetaSingleton import MetaSingleton
+from src.utility.netmiddleware.NetworkObjectTranslator import NetworkObjectTranslator
 
 
+@Pyro4.expose
 class MatchMakingHandler(metaclass=MetaSingleton):
-    def makeNewGame(self, client, modeid: str = 'classic', isranked: bool = False):
+    def makeNewGame(self, client: str, modeid: str = 'classic', isranked: bool = False):
         """
         Request to start a new game
         :param client: Infos of the client of player who wants to start a game
@@ -11,4 +15,6 @@ class MatchMakingHandler(metaclass=MetaSingleton):
         :param isranked: False if the game is not ranked
         """
 
-        MatchMaker(modeid).pushPlayer(client, isranked)
+        clientproxy = NetworkObjectTranslator().translate(client)
+
+        MatchMaker(modeid).pushPlayer(clientproxy, isranked)

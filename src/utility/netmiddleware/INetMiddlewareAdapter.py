@@ -38,5 +38,6 @@ class INetMiddlewareAdapter(metaclass=MetaAbstractSingleton):
         pass
 
     @abc.abstractmethod
-    def setPeerResolverURI(self, uri: str):
+    def setNameServerAddress(self, host: str, port: int):
         pass
+
