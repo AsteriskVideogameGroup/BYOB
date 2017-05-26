@@ -13,6 +13,6 @@ src/domain/gamemanage/gamemode/__pycache__/
 src/domain/gamemanage/obstacle/__pycache__/
 src/domain/gamemanage/powerup/__pycache__/
 src/factories/__pycache__/
-src/utility/__pycache__/
-src/utility/mapstrategy/__pycache__/
+src/foundation/__pycache__/
+src/foundation/mapstrategy/__pycache__/
 src/main_angelo.py

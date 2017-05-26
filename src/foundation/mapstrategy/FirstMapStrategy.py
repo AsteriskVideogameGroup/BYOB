@@ -2,10 +2,10 @@ import copy
 import math
 import random
 
-from src.utility.geometrictools.Position import Position
-from src.utility.metaclasses.MetaSingleton import MetaSingleton
+from src.foundation.geometrictools.Position import Position
+from src.foundation.metaclasses.MetaSingleton import MetaSingleton
 
-from src.utility.mapstrategy.IMapStrategy import IMapStrategy
+from src.foundation.mapstrategy.IMapStrategy import IMapStrategy
 
 
 class FirstMapStrategy(IMapStrategy, metaclass=MetaSingleton):

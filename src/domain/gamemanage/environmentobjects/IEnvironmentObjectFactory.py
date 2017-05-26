@@ -1,5 +1,5 @@
 import abc
-from src.utility.metaclasses import MetaAbstractSingleton
+from src.foundation.metaclasses import MetaAbstractSingleton
 
 
 class IEnvironmentObjectFactory(metaclass=MetaAbstractSingleton):

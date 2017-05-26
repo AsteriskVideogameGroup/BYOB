@@ -74,8 +74,8 @@ md.register(MatchMakingHandler(), "game-handle")
 import Pyro4
 
 from src.control.gamemanage.MatchMakingHandler import MatchMakingHandler
-from src.utility.netmiddleware.NetworkObjectTranslator import NetworkObjectTranslator
-from src.utility.netmiddleware.pyro.PyroNetMiddlewareAdapter import PyroNetMiddlewareAdapter
+from src.foundation.netmiddleware.NetworkObjectTranslator import NetworkObjectTranslator
+from src.foundation.netmiddleware.pyro.PyroNetMiddlewareAdapter import PyroNetMiddlewareAdapter
 
 NetworkObjectTranslator().init("localhost", 9090)
 

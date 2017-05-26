@@ -1,8 +1,8 @@
 import Pyro4
 
 from src.domain.gamemanage.gameessentials.MatchMaker import MatchMaker
-from src.utility.metaclasses.MetaSingleton import MetaSingleton
-from src.utility.netmiddleware.NetworkObjectTranslator import NetworkObjectTranslator
+from src.foundation.metaclasses.MetaSingleton import MetaSingleton
+from src.foundation.netmiddleware.NetworkObjectTranslator import NetworkObjectTranslator
 
 
 @Pyro4.expose

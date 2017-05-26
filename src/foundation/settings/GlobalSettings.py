@@ -1,7 +1,7 @@
 import json
 import os
 
-from src.utility.metaclasses.MetaSingleton import MetaSingleton
+from src.foundation.metaclasses.MetaSingleton import MetaSingleton
 
 
 class GlobalSettings(metaclass=MetaSingleton):
@@ -14,9 +14,9 @@ class GlobalSettings(metaclass=MetaSingleton):
     def __init__(self):
         cur_path = os.path.dirname(__file__)
 
-        #self._settingpath = os.path.relpath('./src/utility/settings/programsettings.json', cur_path)
+        #self._settingpath = os.path.relpath('./src/foundation/settings/programsettings.json', cur_path)
 
-        self._settingpath = "./src/utility/settings/programsettings.json"
+        self._settingpath = "./src/foundation/settings/programsettings.json"
         self._settings = dict()
         self._setup()
 

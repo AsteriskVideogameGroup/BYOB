@@ -1,6 +1,6 @@
 from src.domain.gamemanage.gamemode import GameModeFactory
-from src.utility.geometrictools.Dimensions import Dimensions
-from src.utility.settings import GlobalSettings
+from src.foundation.geometrictools.Dimensions import Dimensions
+from src.foundation.settings import GlobalSettings
 
 
 class ModeMultiton:

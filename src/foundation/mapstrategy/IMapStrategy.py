@@ -1,6 +1,6 @@
 import abc
 
-from src.utility.metaclasses.MetaSingleton import MetaAbstractSingleton
+from src.foundation.metaclasses.MetaSingleton import MetaAbstractSingleton
 
 
 class IMapStrategy(metaclass=MetaAbstractSingleton):

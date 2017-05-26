@@ -2,7 +2,7 @@ import Pyro4
 
 from src.domain.gamemanage.player.ClientInfos import ClientInfos
 from src.domain.gamemanage.player.Player import Player
-from src.utility.netmiddleware.NetworkObjectTranslator import NetworkObjectTranslator
+from src.foundation.netmiddleware.NetworkObjectTranslator import NetworkObjectTranslator
 
 NetworkObjectTranslator().init("localhost", 9090)
 

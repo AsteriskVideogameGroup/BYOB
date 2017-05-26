@@ -5,7 +5,7 @@ from src.domain.gamemanage.gameessentials.Game import Game
 from src.domain.gamemanage.gamemode.ModeBuilder import ModeBuilder
 from src.domain.gamemanage.player.Room import Room
 from src.domain.gamemanage.player.Player import Player
-from src.utility.netmiddleware.NetworkObjectTranslator import NetworkObjectTranslator
+from src.foundation.netmiddleware.NetworkObjectTranslator import NetworkObjectTranslator
 
 
 class MatchMaker:
@@ -70,7 +70,6 @@ class MatchMaker:
 
             for client in arrclients:  # update all client observers
                 client.notifyGameHandler(ghandle.getUniqueName())
+                client.update({"bob-selectable": ghandle.isBoBSelectable()})  # tell the client that it can select a Bob
 
-            # print("debug")
-
-            ghandle.BoBSelectionCountdownStart()
+            ghandle.startBoBSelectionCountdown()  # Start Bob selection Countdown

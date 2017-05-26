@@ -1,4 +1,5 @@
 import abc
+
 from src.domain.gamemanage.gameessentials.IMapElement import IMapElement
 
 

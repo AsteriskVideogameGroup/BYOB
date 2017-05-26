@@ -1,4 +1,4 @@
-from src.domain.gamemanage.obstacle.IObstacle import IObstacle
+from src.domain.gamemanage.obstacle import IObstacle
 
 
 class DestructibleObstacle(IObstacle):

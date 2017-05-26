@@ -5,7 +5,7 @@ import uuid
 import Pyro4
 
 from src.domain.gamemanage.bob.BoBBuilder import BoBBuilder
-from src.utility.settings.GlobalSettings import GlobalSettings
+from src.foundation.settings.GlobalSettings import GlobalSettings
 
 
 @Pyro4.expose
@@ -22,10 +22,13 @@ class GameHandler:
         :param newgame: Game object to handle
         """
         self._currentgame = newgame
-        self._started = False
-        self._bobselectable = False
         self._clientslist = clients
         self._uniquename = str(uuid.uuid4())
+
+        # stato della partita
+        self._gamestarted = False
+        self._bobselectable = True
+        self._mapready = False
 
     def getUniqueName(self):
         return self._uniquename
@@ -34,7 +37,7 @@ class GameHandler:
         """ Prepare the game for the start"""
 
         self._currentgame.prepareGame()
-        self._started = self._currentgame.startGame()
+        self._gamestarted = self._currentgame.startGame()
 
     def chooseBoB(self, owner, bobnameid: str = 'random'):
         """
@@ -46,7 +49,7 @@ class GameHandler:
             newbob = BoBBuilder().createBoB(bobnameid, owner)
             self._currentgame.addBoB(newbob)
 
-    def BoBSelectionCountdownStart(self):
+    def startBoBSelectionCountdown(self):
         self._startDaemon(self._BoBSelectionDaemon)
 
     def _startDaemon(self, target):
@@ -59,7 +62,6 @@ class GameHandler:
 
         timewaited = 0
 
-        self._bobselectable = True
         numplayers = self._currentgame.getRoom().getNumPlayers()
 
         while timewaited < timemax and len(self._currentgame.getBoBArray()) < numplayers:
@@ -80,12 +82,22 @@ class GameHandler:
 
         print("debug3")
 
-        self._bobselectable = False
+        self._bobselectable = False  # flag: Bobs are no more selectable
+        self._mapready = True  # flag: the Map is ready to print
 
         self.prepareGame()  # TODO DA DISCUTERE
 
-        state = dict()  # TODO modificare con valori sensati
-        state["game-started"] = True  # notify that the game is started
-
         for client in self._clientslist:
-            client.update(state)
+            client.update({"map-ready": self._mapready})
+
+    def isBoBSelectable(self):
+        return self._bobselectable
+
+    def isMapReady(self):
+        return self._mapready
+
+    def isGameStarted(self):
+        return self._gamestarted
+
+    def getMap(self):
+        return self._currentgame.getMap()

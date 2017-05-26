@@ -21,6 +21,8 @@
   },
   "choosebobcountdown": 1,
 
-  "netmiddlewaretrasnslator": "PyroNetMiddlewareAdapter"
+  "netmiddlewaretrasnslator": "PyroNetMiddlewareAdapter",
+
+  "spritepath": "..."
 
 }

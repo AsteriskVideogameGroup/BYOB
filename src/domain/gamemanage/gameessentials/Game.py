@@ -68,3 +68,6 @@ class Game:
 
     def getRoom(self):
         return self._gameroom
+
+    def getMap(self):
+        return self._gamemap

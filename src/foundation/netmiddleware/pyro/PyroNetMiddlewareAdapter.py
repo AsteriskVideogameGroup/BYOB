@@ -2,8 +2,8 @@ from threading import Thread
 
 import Pyro4
 
-from src.utility.metaclasses.MetaSingleton import MetaSingleton
-from src.utility.netmiddleware.INetMiddlewareAdapter import INetMiddlewareAdapter
+from src.foundation.metaclasses.MetaSingleton import MetaSingleton
+from src.foundation.netmiddleware.INetMiddlewareAdapter import INetMiddlewareAdapter
 
 
 class PyroNetMiddlewareAdapter(INetMiddlewareAdapter, metaclass=MetaSingleton):

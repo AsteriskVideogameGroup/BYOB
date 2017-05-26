@@ -1,9 +1,9 @@
-from src.utility.metaclasses.MetaSingleton import MetaSingleton
-from src.utility.settings.GlobalSettings import GlobalSettings
-from src.utility.netmiddleware.INetMiddlewareAdapter import INetMiddlewareAdapter
+from src.foundation.metaclasses.MetaSingleton import MetaSingleton
+from src.foundation.settings.GlobalSettings import GlobalSettings
+from src.foundation.netmiddleware.INetMiddlewareAdapter import INetMiddlewareAdapter
 
 # adapter possibili
-from src.utility.netmiddleware.pyro.PyroNetMiddlewareAdapter import PyroNetMiddlewareAdapter
+from src.foundation.netmiddleware.pyro.PyroNetMiddlewareAdapter import PyroNetMiddlewareAdapter
 
 
 class NetworkObjectTranslator(metaclass=MetaSingleton):

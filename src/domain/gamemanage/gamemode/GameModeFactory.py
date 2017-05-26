@@ -1,8 +1,8 @@
 from src.domain.gamemanage.gamemode import Mode
-from src.utility.metaclasses import MetaSingleton
-from src.utility.geometrictools import Dimensions
-import src.utility.settings.GlobalSettings as GlobalSettings
-import src.utility.mapstrategy.FirstMapStrategy as FirstMapStrategy
+from src.foundation.metaclasses import MetaSingleton
+from src.foundation.geometrictools import Dimensions
+import src.foundation.settings.GlobalSettings as GlobalSettings
+import src.foundation.mapstrategy.FirstMapStrategy as FirstMapStrategy
 import src.domain.gamemanage.environmentobjects.ClassicEnvironmentObjectFactory as ClassicEnvironmentObjectFactory
 
 
