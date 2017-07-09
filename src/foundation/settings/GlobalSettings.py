@@ -5,7 +5,6 @@ from src.foundation.metaclasses.MetaSingleton import MetaSingleton
 
 
 class GlobalSettings(metaclass=MetaSingleton):
-
     ########## ATTRIBUTES DEFINITION ##########
 
     # _settingpath : string
@@ -14,7 +13,7 @@ class GlobalSettings(metaclass=MetaSingleton):
     def __init__(self):
         cur_path = os.path.dirname(__file__)
 
-        #self._settingpath = os.path.relpath('./src/foundation/settings/programsettings.json', cur_path)
+        # self._settingpath = os.path.relpath('./src/foundation/settings/programsettings.json', cur_path)
 
         self._settingpath = "./src/foundation/settings/programsettings.json"
         self._settings = dict()
